@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://cdn.tailwindcss.com; connect-src 'self' https://formsubmit.co;">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | Meet Patel</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: { extend: { colors: { 'paper': 'var(--color-paper)', 'ink': 'var(--color-ink)' }, fontFamily: { 'head': ['Oswald', 'sans-serif'], 'body': ['Manrope', 'sans-serif'] } } }
+        }
+    </script>
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Oswald:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root { --color-paper: #E8E6E1; --color-ink: #111111; --color-accent: #444444; } [data-theme='dark'] { --color-paper: #111111; --color-ink: #E8E6E1; --color-accent: #AASSAA; } body { background-color: var(--color-paper); color: var(--color-ink); transition: background-color 0.3s, color 0.3s;
+        }
+    </style>
+<style>
+  html { scroll-behavior: smooth; }
+  .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+  .reveal-visible { opacity: 1; transform: translateY(0); }
+</style>
+<style>
+  #cursor { position: fixed; top: 0; left: 0; width: 20px; height: 20px; border: 1px solid var(--color-ink); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: transform 0.1s, width 0.3s, height 0.3s; mix-blend-mode: difference; }
+  #cursor.hovered { width: 50px; height: 50px; background: var(--color-ink); opacity: 0.1; }
+  #noise { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9998; opacity: 0.05; background: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="1"/%3E%3C/svg%3E'); }
+</style>
+</head>
+
+<body class="p-8 md:p-16 max-w-4xl mx-auto">
+
+    <h1 class="font-head text-4xl md:text-6xl font-bold uppercase mb-8">Privacy Policy</h1>
+
+    <div class="font-body text-lg opacity-80 leading-relaxed space-y-6">
+        <p><strong>Last Updated: December 2025</strong></p>
+
+        <p>I believe in privacy by design. This website is a static portfolio and does not use cookies for tracking or
+            advertising purposes.</p>
+
+        <h2 class="font-head text-2xl font-bold uppercase mt-8 mb-4">1. Data Collection</h2>
+        <p>
+            I do not collect any personal data unless you voluntarily provide it via the contact form.
+            The contact form uses <strong>Formsubmit.co</strong> to securely forward your message to my email.
+            That data is not stored on any database I control.
+        </p>
+
+        <h2 class="font-head text-2xl font-bold uppercase mt-8 mb-4">2. Cookies</h2>
+        <p>
+            This site does not drop any persistence cookies. We use local storage only for essential UI preferences
+            (like potential dark mode in the future).
+        </p>
+
+        <h2 class="font-head text-2xl font-bold uppercase mt-8 mb-4">3. Third-Party Services</h2>
+        <p>
+            We use Google Fonts and Tailwind CDN for styling. These services may collect IP addresses for request
+            delivery, governed by their respective privacy policies.
+        </p>
+
+        <div class="mt-12 pt-8 border-t border-ink border-opacity-20">
+            <a href="index.html" class="font-head font-bold uppercase underline hover:no-underline"><- Back to Home</a>
+        </div>
+    </div>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then(registration => console.log('SW registered:', registration))
+        .catch(error => console.log('SW registration failed:', error));
+    });
+  }
+</script>
+<script>
+    const themeToggle = document.getElementById('themeToggle');
+    const sunIcon = document.getElementById('sunIcon');
+    const moonIcon = document.getElementById('moonIcon');
+    const html = document.documentElement;
+
+    // Check local storage
+    if (localStorage.getItem('theme') === 'dark') {
+        html.setAttribute('data-theme', 'dark');
+        sunIcon.classList.remove('hidden');
+        moonIcon.classList.add('hidden');
+    }
+
+    themeToggle.addEventListener('click', () => {
+        if (html.getAttribute('data-theme') === 'dark') {
+            html.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'light');
+            sunIcon.classList.add('hidden');
+            moonIcon.classList.remove('hidden');
+        } else {
+            html.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+            sunIcon.classList.remove('hidden');
+            moonIcon.classList.add('hidden');
+        }
+    });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    const elementsToAnimate = document.querySelectorAll('h1, h2, h3, p, article, .group, img, blockquote');
+    elementsToAnimate.forEach(el => {
+      el.classList.add('reveal');
+      observer.observe(el);
+    });
+  });
+</script>
+<div id="cursor"></div><div id="noise"></div>
+<script>
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+  });
+</script>
+</body>
+
+</html>

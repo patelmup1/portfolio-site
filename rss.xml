@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+<channel>
+  <title>Meet Patel's Tech Blog</title>
+  <link>https://meetpatel.me/blog.html</link>
+  <description>Insights on Frontend Development, React, and Software Engineering.</description>
+  <language>en-us</language>
+  
+  <item>
+    <title>How I built my portfolio website</title>
+    <link>https://meetpatel.me/blog-portfolio.html</link>
+    <description>A deep dive into the technical decisions behind my interactive portfolio, from tackling WebGL performance to mastering SEO for single-page applications.</description>
+    <pubDate>Mon, 01 Dec 2025 12:00:00 GMT</pubDate>
+  </item>
+
+  <item>
+    <title>Frontend projects by Meet Patel explained</title>
+    <link>https://meetpatel.me/blog-projects.html</link>
+    <description>Breaking down the architecture of my key projects: FinTech Dashboard, ShareX, and the 3D Workspace. Principles of scalability and clean code.</description>
+    <pubDate>Sat, 01 Nov 2025 12:00:00 GMT</pubDate>
+  </item>
+
+  <item>
+    <title>Best tools I use as a web developer</title>
+    <link>https://meetpatel.me/blog-tools.html</link>
+    <description>My curated list of extensions, software, and hardware that keeps my workflow efficient and my code bug-free.</description>
+    <pubDate>Wed, 01 Oct 2025 12:00:00 GMT</pubDate>
+  </item>
+
+  <item>
+    <title>How I design clean UI as a developer</title>
+    <link>https://meetpatel.me/blog-ui.html</link>
+    <description>Bridging the gap between Figma and Code. Tips for developers who want to improve their design eye and build polished interfaces.</description>
+    <pubDate>Mon, 01 Sep 2025 12:00:00 GMT</pubDate>
+  </item>
+
+</channel>
+</rss>

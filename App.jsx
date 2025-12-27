@@ -1,0 +1,526 @@
+import React, { useState, useEffect, useRef } from 'react';
+import * as THREE from 'three';
+import { Monitor, X, ExternalLink, Github, Globe, Smartphone, MousePointer2, ChevronDown, AlertCircle } from 'lucide-react';
+
+// --- Configuration & Data ---
+const PROJECTS = [
+  {
+    id: 'laptop',
+    title: 'FinTech Dashboard',
+    description: 'A real-time financial data visualization platform built with D3.js and React. Features live socket updates and heatmap analytics.',
+    link: '#',
+    color: 0x60a5fa
+  },
+  {
+    id: 'monitor',
+    title: 'E-Commerce Mobile App',
+    description: 'React Native application with offline-first architecture, seamless checkout, and biometric authentication.',
+    link: '#',
+    color: 0x34d399
+  }
+];
+
+// --- Vanilla Three.js Scene Setup ---
+
+export default function App() {
+  const mountRef = useRef(null);
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const [showMobileWarning, setShowMobileWarning] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+  
+  // State to track if we are zoomed in enough to interact
+  const [interactionEnabled, setInteractionEnabled] = useState(false);
+
+  // Handle Resize Logic
+  useEffect(() => {
+    const handleResize = () => {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      if (mobile) setShowMobileWarning(true);
+    };
+    handleResize(); // Check on mount
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Initialize Three.js Scene
+  useEffect(() => {
+    if (!mountRef.current) return;
+
+    // 1. Setup Scene, Camera, Renderer
+    const width = mountRef.current.clientWidth;
+    const height = mountRef.current.clientHeight;
+
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0xeef2f6, 0.03); 
+
+    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
+    
+    // Initial Camera Position (Zoomed Out / High Angle)
+    camera.position.set(0, 8, 15);
+    camera.lookAt(0, 0, 0);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(width, height);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.2;
+    mountRef.current.appendChild(renderer.domElement);
+
+    // 2. Lights
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+    scene.add(ambientLight);
+
+    const dirLight = new THREE.DirectionalLight(0xffffff, 1.5);
+    dirLight.position.set(5, 12, 8);
+    dirLight.castShadow = true;
+    dirLight.shadow.mapSize.width = 2048;
+    dirLight.shadow.mapSize.height = 2048;
+    dirLight.shadow.bias = -0.0001;
+    scene.add(dirLight);
+
+    const fillLight = new THREE.PointLight(0xe0f2fe, 0.5);
+    fillLight.position.set(-5, 2, -5);
+    scene.add(fillLight);
+
+    // 3. Objects Construction
+    
+    // -- Materials --
+    const matPlastic = new THREE.MeshStandardMaterial({ color: 0xe5e7eb, roughness: 0.4, metalness: 0.1 });
+    const matDark = new THREE.MeshStandardMaterial({ color: 0x1f2937, roughness: 0.7 });
+    const matScreenOff = new THREE.MeshStandardMaterial({ color: 0x0f172a, roughness: 0.2 });
+    const matMetal = new THREE.MeshStandardMaterial({ color: 0xe2e8f0, roughness: 0.3, metalness: 0.8 }); 
+    const matTrackpad = new THREE.MeshStandardMaterial({ color: 0xcfd3d8, roughness: 0.4, metalness: 0.4 });
+    const cupMat = new THREE.MeshStandardMaterial({ color: 0xf59e0b, roughness: 0.2 });
+    const shadowMat = new THREE.MeshBasicMaterial({ color: 0x94a3b8, opacity: 0.15, transparent: true });
+    
+    // Updated Screen Materials for Glow Effect
+    // We use Emissive property to make them glow on hover
+    const screenMat = new THREE.MeshStandardMaterial({ 
+      color: 0x000000, 
+      roughness: 0.2, 
+      emissive: PROJECTS[0].color,
+      emissiveIntensity: 0.8 
+    });
+    
+    const monScreenMat = new THREE.MeshStandardMaterial({ 
+      color: 0x000000, 
+      roughness: 0.2, 
+      emissive: PROJECTS[1].color,
+      emissiveIntensity: 0.8 
+    });
+
+    const matTableTop = new THREE.MeshStandardMaterial({ color: 0xf3e5d0, roughness: 0.6 });
+    const matTableLegs = new THREE.MeshStandardMaterial({ color: 0x27272a, roughness: 0.8 });
+
+    // Global Scale Factor
+    const SCALE = 0.85;
+
+    // -- Table Construction --
+    const tableGroup = new THREE.Group();
+    const tableW = 6; const tableD = 3; const tableThickness = 0.15;
+    const tableGeo = new THREE.BoxGeometry(tableW, tableThickness, tableD);
+    const tableTop = new THREE.Mesh(tableGeo, matTableTop);
+    tableTop.position.y = -tableThickness / 2;
+    tableTop.receiveShadow = true;
+    tableTop.castShadow = true;
+    tableGroup.add(tableTop);
+
+    const legH = 2.5; const legR = 0.08;
+    const legGeo = new THREE.CylinderGeometry(legR, legR, legH, 16);
+    const legPositions = [
+      { x: -tableW/2 + 0.3, z: -tableD/2 + 0.3 },
+      { x: tableW/2 - 0.3, z: -tableD/2 + 0.3 },
+      { x: -tableW/2 + 0.3, z: tableD/2 - 0.3 },
+      { x: tableW/2 - 0.3, z: tableD/2 - 0.3 },
+    ];
+    legPositions.forEach(pos => {
+      const leg = new THREE.Mesh(legGeo, matTableLegs);
+      leg.position.set(pos.x, -legH/2 - tableThickness, pos.z);
+      leg.castShadow = true;
+      leg.receiveShadow = true;
+      tableGroup.add(leg);
+    });
+    scene.add(tableGroup);
+
+    // -- Laptop Group --
+    const laptopGroup = new THREE.Group();
+    laptopGroup.scale.set(SCALE, SCALE, SCALE);
+    laptopGroup.position.set(-0.8, 0, 0); 
+    
+    const baseW = 2.0; const baseH = 0.08; const baseD = 1.3;
+    const baseGeo = new THREE.BoxGeometry(baseW, baseH, baseD);
+    const base = new THREE.Mesh(baseGeo, matMetal);
+    base.position.y = baseH / 2;
+    base.castShadow = true;
+    base.receiveShadow = true;
+    laptopGroup.add(base);
+
+    const kbGeo = new THREE.PlaneGeometry(1.6, 0.65);
+    const kb = new THREE.Mesh(kbGeo, matDark);
+    kb.rotation.x = -Math.PI / 2;
+    kb.position.set(0, baseH + 0.001, -0.15);
+    laptopGroup.add(kb);
+
+    const tpGeo = new THREE.PlaneGeometry(0.6, 0.4);
+    const tp = new THREE.Mesh(tpGeo, matTrackpad);
+    tp.rotation.x = -Math.PI / 2;
+    tp.position.set(0, baseH + 0.001, 0.4);
+    laptopGroup.add(tp);
+
+    const lidGroup = new THREE.Group();
+    lidGroup.position.set(0, baseH, -baseD / 2); 
+    
+    const lidH = 0.04; 
+    const lidGeo = new THREE.BoxGeometry(baseW, lidH, baseD);
+    const lid = new THREE.Mesh(lidGeo, matMetal);
+    lid.position.set(0, lidH / 2, baseD / 2);
+    lid.castShadow = true;
+    lidGroup.add(lid);
+
+    const screenGroup = new THREE.Group();
+    screenGroup.position.set(0, 0, baseD / 2);
+    screenGroup.rotation.x = Math.PI / 2; 
+
+    const bezelGeo = new THREE.PlaneGeometry(1.9, 1.2);
+    const bezel = new THREE.Mesh(bezelGeo, matScreenOff);
+    bezel.position.z = 0.001;
+    screenGroup.add(bezel);
+
+    const lcdGeo = new THREE.PlaneGeometry(1.8, 1.1);
+    const lcd = new THREE.Mesh(lcdGeo, screenMat);
+    lcd.position.z = 0.002;
+    lcd.userData = { id: 'laptop', clickable: true };
+    screenGroup.add(lcd);
+
+    lidGroup.add(screenGroup);
+    laptopGroup.add(lidGroup);
+    scene.add(laptopGroup);
+
+    // -- Monitor --
+    const monitorGroup = new THREE.Group();
+    monitorGroup.scale.set(SCALE, SCALE, SCALE);
+    monitorGroup.position.set(1.2, 0, -0.5); 
+    monitorGroup.rotation.y = -0.4;
+
+    const standBaseGeo = new THREE.BoxGeometry(0.6, 0.04, 0.6);
+    const standBase = new THREE.Mesh(standBaseGeo, matDark);
+    standBase.position.y = 0.02;
+    standBase.castShadow = true;
+    monitorGroup.add(standBase);
+
+    const standNeckGeo = new THREE.CylinderGeometry(0.06, 0.06, 1, 16);
+    const standNeck = new THREE.Mesh(standNeckGeo, matDark);
+    standNeck.position.set(0, 0.5, -0.15);
+    monitorGroup.add(standNeck);
+
+    const monHeadGeo = new THREE.BoxGeometry(2.2, 1.3, 0.08); 
+    const monHead = new THREE.Mesh(monHeadGeo, matScreenOff);
+    monHead.position.set(0, 1.1, 0);
+    monHead.castShadow = true;
+    monitorGroup.add(monHead);
+
+    const monScreenGeo = new THREE.PlaneGeometry(2.1, 1.2);
+    const monScreen = new THREE.Mesh(monScreenGeo, monScreenMat);
+    monScreen.position.set(0, 1.1, 0.041);
+    monScreen.userData = { id: 'monitor', clickable: true };
+    monitorGroup.add(monScreen);
+
+    scene.add(monitorGroup);
+
+    // -- Accessories --
+    const accessoriesGroup = new THREE.Group();
+    accessoriesGroup.scale.set(SCALE, SCALE, SCALE);
+    
+    const cupGeo = new THREE.CylinderGeometry(0.12, 0.1, 0.3, 32);
+    const cup = new THREE.Mesh(cupGeo, cupMat);
+    cup.position.set(1.6, 0.15, 0.4); 
+    cup.castShadow = true;
+    accessoriesGroup.add(cup);
+
+    const mouseGeo = new THREE.BoxGeometry(0.12, 0.06, 0.22);
+    const mouse = new THREE.Mesh(mouseGeo, matDark);
+    mouse.position.set(0.2, 0.03, 0.5); 
+    mouse.castShadow = true;
+    accessoriesGroup.add(mouse);
+
+    const shadowGeo = new THREE.CircleGeometry(5, 64);
+    const shadowPlane = new THREE.Mesh(shadowGeo, shadowMat);
+    shadowPlane.rotation.x = -Math.PI / 2;
+    shadowPlane.position.y = 0.005;
+    scene.add(shadowPlane);
+    scene.add(accessoriesGroup);
+
+    // 4. Animation Loop
+    const clock = new THREE.Clock();
+    const raycaster = new THREE.Raycaster();
+    const mouseVector = new THREE.Vector2();
+    let mouseX = 0;
+    let mouseY = 0;
+    let isHoveringLaptop = false;
+    let lidAngle = 0;
+    let hoveredObj = null; // Track specific mesh being hovered for glow effect
+
+    let _interactionEnabled = false;
+
+    // Scroll Logic
+    const startCamPos = new THREE.Vector3(0, 8, 15);
+    const endCamPos = new THREE.Vector3(0, 2.0, 6.0);
+    
+    const animate = () => {
+      const delta = clock.getDelta();
+
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      let progress = Math.min(scrollY / (windowHeight * 0.6), 1);
+      progress = 1 - Math.pow(1 - progress, 3);
+
+      camera.position.lerpVectors(startCamPos, endCamPos, progress);
+      camera.lookAt(0, 0, 0);
+
+      if (progress > 0.95 && !_interactionEnabled) {
+        _interactionEnabled = true;
+        setInteractionEnabled(true);
+      } else if (progress < 0.95 && _interactionEnabled) {
+        _interactionEnabled = false;
+        setInteractionEnabled(false);
+        isHoveringLaptop = false;
+        if (hoveredObj) {
+          hoveredObj.material.emissiveIntensity = 0.8;
+          hoveredObj = null;
+        }
+        document.body.style.cursor = 'auto';
+      }
+
+      if (_interactionEnabled && window.innerWidth >= 768) {
+        camera.position.x += (mouseX * 0.3 - (camera.position.x - endCamPos.x)) * 0.05;
+        camera.position.y += (mouseY * 0.1 - (camera.position.y - endCamPos.y)) * 0.05;
+        camera.lookAt(0, 0, 0);
+      }
+
+      const targetAngle = (_interactionEnabled && (isHoveringLaptop || window.innerWidth < 768)) ? -1.9 : 0;
+      lidAngle += (targetAngle - lidAngle) * 6 * delta;
+      lidGroup.rotation.x = lidAngle;
+
+      renderer.render(scene, camera);
+      requestAnimationFrame(animate);
+    };
+
+    const animationId = requestAnimationFrame(animate);
+    setLoaded(true);
+
+    // 5. Interaction
+    const onMouseMove = (event) => {
+      if (!_interactionEnabled) return;
+
+      const rect = renderer.domElement.getBoundingClientRect();
+      mouseVector.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+      mouseVector.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+      
+      mouseX = mouseVector.x;
+      mouseY = mouseVector.y;
+
+      raycaster.setFromCamera(mouseVector, camera);
+      const intersects = raycaster.intersectObjects(scene.children, true);
+
+      // 1. Laptop Hinge Logic (Group level)
+      const laptopHits = intersects.filter(hit => {
+        let obj = hit.object;
+        while(obj) {
+          if (obj === laptopGroup) return true;
+          obj = obj.parent;
+        }
+        return false;
+      });
+      const newHoverState = laptopHits.length > 0;
+      if (newHoverState !== isHoveringLaptop) {
+        isHoveringLaptop = newHoverState;
+      }
+
+      // 2. Specific Screen Glow Logic (Mesh level)
+      const clickableHit = intersects.find(hit => hit.object.userData.clickable);
+      
+      // Reset previous hover glow if moved away
+      if (hoveredObj && hoveredObj !== clickableHit?.object) {
+        hoveredObj.material.emissiveIntensity = 0.8; // Return to base intensity
+        hoveredObj = null;
+      }
+
+      if (clickableHit) {
+        hoveredObj = clickableHit.object;
+        hoveredObj.material.emissiveIntensity = 1.5; // BOOST intensity for glow
+        document.body.style.cursor = 'pointer';
+      } else {
+        document.body.style.cursor = 'auto';
+      }
+    };
+
+    const onClick = (event) => {
+      if (!_interactionEnabled) return;
+
+      raycaster.setFromCamera(mouseVector, camera);
+      const intersects = raycaster.intersectObjects(scene.children, true);
+      const hit = intersects.find(h => h.object.userData.clickable);
+      if (hit) {
+        const pid = hit.object.userData.id;
+        const proj = PROJECTS.find(p => p.id === pid);
+        if (proj) setSelectedProject(proj);
+      }
+    };
+
+    mountRef.current.addEventListener('mousemove', onMouseMove);
+    mountRef.current.addEventListener('click', onClick);
+
+    return () => {
+      cancelAnimationFrame(animationId);
+      window.removeEventListener('resize', handleResize);
+      if (mountRef.current) {
+        mountRef.current.removeChild(renderer.domElement);
+        mountRef.current.removeEventListener('mousemove', onMouseMove);
+        mountRef.current.removeEventListener('click', onClick);
+      }
+      renderer.dispose();
+      [matPlastic, matDark, matScreenOff, matMetal, matTrackpad, screenMat, monScreenMat, cupMat, shadowMat, matTableTop, matTableLegs].forEach(m => m.dispose());
+      [baseGeo, kbGeo, tpGeo, lidGeo, bezelGeo, lcdGeo, cupGeo, shadowGeo, standBaseGeo, standNeckGeo, monHeadGeo, monScreenGeo, tableGeo, legGeo].forEach(g => g.dispose());
+    };
+  }, []);
+
+  return (
+    <div className="relative w-full h-[200vh] bg-white font-sans text-gray-800 selection:bg-blue-100 selection:text-blue-900">
+      
+      {/* --- Mobile Warning Banner --- */}
+      {showMobileWarning && (
+        <div className="fixed top-0 left-0 w-full bg-yellow-50 border-b border-yellow-100 text-yellow-800 px-4 py-3 z-[60] flex items-center justify-between shadow-sm">
+          <div className="flex items-center gap-3">
+            <AlertCircle size={20} className="text-yellow-600 flex-shrink-0" />
+            <p className="text-sm font-medium">
+              For the best interactive experience, please view this portfolio on a desktop.
+            </p>
+          </div>
+          <button 
+            onClick={() => setShowMobileWarning(false)} 
+            className="p-1 hover:bg-yellow-100 rounded-full transition-colors"
+          >
+            <X size={18} />
+          </button>
+        </div>
+      )}
+
+      {/* --- Fixed Background & 3D Scene --- */}
+      <div className="fixed inset-0 w-full h-screen z-0">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-50 via-gray-50 to-gray-100" />
+        <div ref={mountRef} className="absolute inset-0 outline-none" />
+      </div>
+
+      {/* --- Header --- */}
+      <header className="fixed top-12 left-0 w-full px-6 z-10 flex justify-between items-center pointer-events-none">
+        <div className="flex flex-col">
+          <h1 className="text-3xl font-extrabold tracking-tight text-gray-900 drop-shadow-sm">Meetkumar Patel</h1>
+          <p className="text-sm font-medium text-gray-500 tracking-wide mt-1">Creative Developer & UI Engineer</p>
+        </div>
+        <div className="flex gap-4 pointer-events-auto transition-opacity duration-300" style={{ opacity: interactionEnabled ? 1 : 0.5 }}>
+          <a 
+            href="https://github.com/patelmup1" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            aria-label="Github"
+            className="p-3 bg-white/60 backdrop-blur-md border border-white/40 rounded-full hover:bg-white hover:shadow-lg hover:scale-105 transition-all duration-300 text-gray-700 hover:text-black group"
+          >
+            <Github size={20} className="group-hover:rotate-12 transition-transform" />
+          </a>
+          <a 
+            href="https://www.meetpatel.me" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            aria-label="Website"
+            className="p-3 bg-white/60 backdrop-blur-md border border-white/40 rounded-full hover:bg-white hover:shadow-lg hover:scale-105 transition-all duration-300 text-gray-700 hover:text-blue-600 group"
+          >
+            <Globe size={20} className="group-hover:-rotate-12 transition-transform" />
+          </a>
+        </div>
+      </header>
+
+      {/* --- Loading State --- */}
+      {!loaded && (
+        <div className="fixed inset-0 flex items-center justify-center bg-white z-50 transition-opacity duration-500">
+          <div className="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+        </div>
+      )}
+
+      {/* --- Scroll Prompt --- */}
+      {!interactionEnabled && loaded && (
+        <div className="fixed bottom-12 left-1/2 -translate-x-1/2 z-10 pointer-events-none animate-bounce text-gray-400 flex flex-col items-center gap-3">
+          <div className="p-3 rounded-full bg-white/50 backdrop-blur-sm border border-white/50 shadow-sm">
+             <ChevronDown size={24} />
+          </div>
+          <span className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500">
+            Scroll to Explore
+          </span>
+        </div>
+      )}
+
+      {/* --- Interaction Hint --- */}
+      {interactionEnabled && !selectedProject && (
+        <div className="fixed bottom-12 left-1/2 -translate-x-1/2 z-10 pointer-events-none animate-in fade-in slide-in-from-bottom-4 duration-700 text-gray-400 flex flex-col items-center gap-3">
+          <div className="p-3 rounded-full bg-white/50 backdrop-blur-sm border border-white/50 shadow-sm">
+             {isMobile ? <Smartphone size={24} /> : <MousePointer2 size={24} />}
+          </div>
+          <span className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500">
+            {isMobile ? "Tap to Explore" : "Hover Screens & Click"}
+          </span>
+        </div>
+      )}
+
+      {/* --- Project Modal --- */}
+      {selectedProject && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/10 backdrop-blur-sm transition-all duration-500">
+          <div 
+            className="bg-white/90 backdrop-blur-xl border border-white/50 rounded-3xl shadow-2xl w-full max-w-md overflow-hidden transform transition-all animate-in fade-in zoom-in-95 duration-300 ring-1 ring-black/5"
+          >
+            {/* Modal Header */}
+            <div 
+              className="relative h-40 flex items-center justify-center overflow-hidden"
+              style={{ backgroundColor: '#' + selectedProject.color.toString(16) }}
+            >
+              <div className="absolute inset-0 bg-black/10" /> 
+              
+              <button 
+                onClick={() => setSelectedProject(null)}
+                className="absolute top-4 right-4 p-2 bg-black/20 hover:bg-black/40 rounded-full text-white transition-colors backdrop-blur-sm z-10"
+              >
+                <X size={18} />
+              </button>
+              <Monitor size={56} className="text-white drop-shadow-lg relative z-0 transform hover:scale-110 transition-transform duration-500" />
+            </div>
+
+            {/* Modal Content */}
+            <div className="p-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-3 tracking-tight">{selectedProject.title}</h2>
+              <p className="text-gray-600 mb-8 leading-relaxed text-base">
+                {selectedProject.description}
+              </p>
+
+              <div className="flex gap-4">
+                <button className="flex-1 bg-gray-900 text-white py-3.5 px-6 rounded-2xl font-semibold hover:bg-gray-800 hover:shadow-lg hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2 group">
+                  View Case Study
+                  <ExternalLink size={18} className="opacity-70 group-hover:translate-x-0.5 transition-transform" />
+                </button>
+                <button className="p-3.5 border-2 border-gray-100 rounded-2xl hover:bg-gray-50 hover:border-gray-200 transition-colors text-gray-500 hover:text-gray-900">
+                  <Globe size={20} />
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <div 
+            className="absolute inset-0 -z-10" 
+            onClick={() => setSelectedProject(null)} 
+          />
+        </div>
+      )}
+    </div>
+  );
+}

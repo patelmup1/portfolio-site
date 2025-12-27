@@ -1,0 +1,14 @@
+/* TEAM */
+  Name: Meetkumar Patel
+  Role: Frontend Developer & Creative Technologist
+  Location: Kheda, Gujarat, India
+  Site: https://meetpatel.me
+
+/* TECHNOLOGY */
+  Stack: HTML5, Tailwind CSS, Three.js, React
+  Tools: VS Code, Git, Vite, Python
+  Font: Oswald (Headings), Manrope (Body)
+
+/* STATEMENT */
+  Built with passion and vibe coding workflows.
+  Thanks for visiting!

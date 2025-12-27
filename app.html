@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://cdn.tailwindcss.com; connect-src 'self' https://formsubmit.co;">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meetkumar Patel | Creative Engineer</title>
+    <meta property="og:title" content="Meetkumar Patel | Creative Engineer">
+    <meta property="og:description" content="Portfolio of Meet Patel - Software Engineer & Web Developer. Explore interactive 3D projects and technical deep dives.">
+    <meta property="og:image" content="https://meetpatel.me/photos/profile.webp">
+    <meta property="og:url" content="https://meetpatel.me/">
+    <meta property="og:type" content="website">
+
+    <!-- Custom Favicon -->
+    <link rel="icon" href="./favicon.jpg">
+
+    <!-- Fonts: Oswald (Headings) & Manrope (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Oswald:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- React & ReactDOM -->
+    <script type="importmap">
+    {
+      "imports": {
+        "react": "https://esm.sh/react@18.2.0",
+        "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+        "lucide-react": "https://esm.sh/lucide-react@0.263.1?external=react,react-dom",
+        "framer-motion": "https://esm.sh/framer-motion@10.16.4?external=react,react-dom"
+      }
+    }
+    </script>
+
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'paper': 'var(--color-paper)',
+                        'ink': 'var(--color-ink)',
+                        'accent': 'var(--color-accent)'
+                    },
+                    fontFamily: {
+                        'head': ['Oswald', 'sans-serif'],
+                        'body': ['Manrope', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root { --color-paper: #E8E6E1; --color-ink: #111111; --color-accent: #444444; } [data-theme='dark'] { --color-paper: #111111; --color-ink: #E8E6E1; --color-accent: #AASSAA; } body { background-color: var(--color-paper); color: var(--color-ink); transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+            cursor: default;
+            /* Reset cursor for better mobile feel */
+        }
+
+        /* Outline Text Utility */
+        .text-outline {
+            -webkit-text-stroke: 1px #111;
+            color: transparent;
+        }
+
+        .text-outline-hover:hover {
+            color: #111;
+        }
+
+        /* Marquee Animation */
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: scroll 20s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #E8E6E1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #111;
+            border-radius: 4px;
+        }
+    </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Meet Patel",
+  "url": "https://meetpatel.me",
+  "image": "https://meetpatel.me/photos/profile.webp",
+  "sameAs": [
+    "https://www.linkedin.com/in/meet-patel-8a2a82218",
+    "https://github.com/patelmup1",
+    "https://instagram.com/meet_creationx"
+  ],
+  "jobTitle": "Software Engineer",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Kheda",
+    "addressRegion": "Gujarat",
+    "addressCountry": "IN"
+  }
+}
+</script>
+<style>
+  @media print {
+    header, nav, #scrollTopBtn, footer { display: none !important; }
+    body { background: white !important; color: black !important; padding: 0 !important; }
+    main { padding-top: 0 !important; }
+  }
+</style>
+<link rel="manifest" href="./manifest.json">
+    <link rel="apple-touch-icon" href="./favicon.jpg">
+    <link rel="preload" href="./photos/profile.webp" as="image">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Oswald:wght@400;500;700&display=swap" as="style">
+<style>
+  html { scroll-behavior: smooth; }
+  .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+  .reveal-visible { opacity: 1; transform: translateY(0); }
+</style>
+<style>
+  #cursor { position: fixed; top: 0; left: 0; width: 20px; height: 20px; border: 1px solid var(--color-ink); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: transform 0.1s, width 0.3s, height 0.3s; mix-blend-mode: difference; }
+  #cursor.hovered { width: 50px; height: 50px; background: var(--color-ink); opacity: 0.1; }
+  #noise { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9998; opacity: 0.05; background: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="1"/%3E%3C/svg%3E'); }
+</style>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel" data-type="module">
+        import React, { useState, useEffect, useRef } from 'react';
+        import { createRoot } from 'react-dom/client';
+        import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+        import { ArrowUpRight, Github, Linkedin, Mail, Youtube, Instagram, FileText, Download, X, Menu, Building, MapPin, Eye } from 'lucide-react';
+
+        // --- DATA ---
+        const TRANSLATIONS = {
+            English: {
+                ui: {
+                    menu: "MENU",
+                    cv: "CV",
+                    home: "Home",
+                    works: "Works",
+                    about: "About",
+                    firms: "Firms",
+                    gallery: "Gallery",
+                    contact: "Contact",
+                    changeLanguage: "Change Language",
+                    est: "EST. 2025",
+                    myWorks: "My Works",
+                    selectedProjects: "(SELECTED PROJECTS 2023-24)",
+                    viewProject: "View Project",
+                    view: "View",
+                    logo: "LOGO",
+                    viewLocation: "View Location",
+                    aboutTitle: "ABOUT &",
+                    experience: "EXPERIENCE",
+                    aboutDesc: "A comprehensive look at my academic journey, technical capabilities, and professional focus areas.",
+                    downloadResume: "Download Resume",
+                    educationHistory: "Education History",
+                    skillStack: "Skill Stack",
+                    socialUplink: "Social Uplink",
+                    associatedFirms: "Associated Firms",
+                    firmsDesc: "Proudly connected with these established organizations and business ventures.",
+                    certifications: "Certifications & Gallery",
+                    contactMe: "CONTACT",
+                    me: "ME",
+                    email: "EMAIL",
+                    socials: "SOCIALS",
+                    designBy: "DESIGN BY MEET PATEL",
+                    codedWith: "CODED WITH REACT",
+                    imgNotFound: "IMG NOT FOUND",
+                    fileNotFound: "FILE NOT FOUND",
+                    portfolio: "PORTFOLIO"
+                },
+                profile: {
+                    name: "MEETKUMAR PATEL",
+                    role: "COMPUTER ENGINEER",
+                    subRoles: ["AI ENTHUSIAST", "UI/UX DESIGNER", "TRADER", "WEB DEVELOPER"],
+                    location: "KHEDA, GUJARAT",
+                    contact: {
+                        email: "patelmup121312@gmail.com",
+                        linkedin: "https://www.linkedin.com/in/meet-patel-8a2a82218",
+                        youtube: "https://youtube.com/@PATELFARMER12",
+                        vlogs: "https://www.youtube.com/@MeetxVlogs",
+                        github: "https://github.com/patelmup1",
+                        insta1: "https://instagram.com/meet_creationx",
+                        insta2: "https://instagram.com/mr.meet_12"
+                    },
+                    summary: "I design quality products that bring profit to the company. Meanwhile, it helps me improve my skills. Blending passion, determination, and a keen eye for solutions.",
+                    education: [
+                        { year: "2023-2026", title: "B.E. Computer Engineering", org: "Sardar Patel College of Engineering (Affiliated with GTU)" },
+                        { year: "2020", title: "Diploma Computer Engineering", org: "Govt Polytechnic Himatnagar" }
+                    ],
+                    skills: ["Machine Learning", "UI/UX Design", "Web Development", "Trading & Finance", "IoT Hardware", "Python & Data", "SAP ABAP", "MySQL / DBMS"],
+                    projects: [
+                        { title: "3D WORKSPACE", cat: "THREE.JS / REACT", desc: "Interactive 3D developer workspace environment.", year: "2025", img: "./photos/workspace_thumb.jpg", link: "./workspace.html" },
+                        { title: "FINTECH DASHBOARD", cat: "D3.JS / REACT", desc: "Real-time financial analytics platform.", year: "2025", img: "./photos/findash_thumb.jpg", link: "./findash.html" },
+                        { title: "SHAREX", cat: "REACT / ALGORITHMS", desc: "Secure file sharing with 6-digit code retrieval system.", year: "2025", img: "./photos/sharex_thumb_banana.png", link: "./sharex.html" }
+                    ],
+                    gallery: ["./photos/cert1.jpg", "./photos/cert2.jpg", "./photos/cert6.jpg", "./photos/cert7.jpg", "./photos/cert3.jpg", "./photos/cert4.jpg", "./photos/cert5.png", "./photos/cert8.jpg"],
+                    firms: [
+                        { name: "R P Complex", logo: "./photos/firm1.jpg", link: "https://maps.app.goo.gl/hZun3PkbJPkjJhmj6", type: "Commercial Complex" },
+                        { name: "Umiya Battery", logo: "./photos/firm2.jpg", link: "https://maps.app.goo.gl/otPQky2FRupjiVAx5", type: "Automotive Services" },
+                        { name: "Vikram Krushi Seva Trust", logo: "./photos/firm3.jpg", link: "#", type: "Agricultural Trust" }
+                    ],
+                    photoUrl: "./photos/profile.jpg",
+                    resume: "./docs/resume.pdf"
+                }
+            },
+            Hindi: {
+                ui: {
+                    menu: "मेनू",
+                    cv: "सीवी",
+                    home: "होम",
+                    works: "काम",
+                    about: "परिचय",
+                    firms: "संस्थाएं",
+                    gallery: "गैलरी",
+                    contact: "संपर्क",
+                    changeLanguage: "भाषा बदलें",
+                    est: "स्था. 2025",
+                    myWorks: "मेरे काम",
+                    selectedProjects: "(चयनित परियोजनाएं 2023-24)",
+                    viewProject: "प्रोजेक्ट देखें",
+                    view: "देखें",
+                    logo: "लोगो",
+                    viewLocation: "स्थान देखें",
+                    aboutTitle: "परिचय और",
+                    experience: "अनुभव",
+                    aboutDesc: "मेरी शैक्षणिक यात्रा, तकनीकी क्षमताओं और पेशेवर फोकस क्षेत्रों पर एक व्यापक नज़र।",
+                    downloadResume: "रिज़्यूम डाउनलोड करें",
+                    educationHistory: "शिक्षा इतिहास",
+                    skillStack: "कौशल",
+                    socialUplink: "सोशल मीडिया",
+                    associatedFirms: "सहयोगी संस्थाएं",
+                    firmsDesc: "इन प्रतिष्ठित संगठनों और व्यावसायिक उपक्रमों के साथ गर्व से जुड़ा हुआ।",
+                    certifications: "प्रमाणपत्र और गैलरी",
+                    contactMe: "संपर्क",
+                    me: "करें",
+                    email: "ईमेल",
+                    socials: "सोशल",
+                    designBy: "डिज़ाइन: मीट पटेल",
+                    codedWith: "कोड: रिएक्ट",
+                    imgNotFound: "छवि नहीं मिली",
+                    fileNotFound: "फ़ाइल नहीं मिली",
+                    portfolio: "पोर्टफोलियो"
+                },
+                profile: {
+                    name: "मीतकुमार पटेल",
+                    role: "कंप्यूटर इंजीनियर",
+                    subRoles: ["एआई उत्साही", "यूआई/यूएक्स डिज़ाइनर", "ट्रेडर", "वेब डेवलपर"],
+                    location: "खेड़ा, गुजरात",
+                    contact: {
+                        email: "patelmup121312@gmail.com",
+                        linkedin: "https://www.linkedin.com/in/meet-patel-8a2a82218",
+                        youtube: "https://youtube.com/@PATELFARMER12",
+                        vlogs: "https://www.youtube.com/@MeetxVlogs",
+                        github: "https://github.com/patelmup1",
+                        insta1: "https://instagram.com/meet_creationx",
+                        insta2: "https://instagram.com/mr.meet_12"
+                    },
+                    summary: "मैं गुणवत्ता वाले उत्पाद डिज़ाइन करता हूँ जो कंपनी को लाभ पहुँचाते हैं। साथ ही, यह मुझे अपने कौशल को सुधारने में मदद करता है। जुनून, दृढ़ संकल्प और समाधान के लिए एक पैनी नज़र का मिश्रण।",
+                    education: [
+                        { year: "2023-2026", title: "बी.ई. कंप्यूटर इंजीनियरिंग", org: "सरदार पटेल कॉलेज ऑफ इंजीनियरिंग (जीटीयू से संबद्ध)" },
+                        { year: "2020", title: "डिप्लोमा कंप्यूटर इंजीनियरिंग", org: "गवर्नमेंट पॉलिटेक्निक हिम्मतनगर" }
+                    ],
+                    skills: ["मशीन लर्निंग", "यूआई/यूएक्स डिज़ाइन", "वेब डेवलपमेंट", "ट्रेडिंग और फाइनेंस", "आईओटी हार्डवेयर", "पायथन और डेटा", "सैप अबैप", "माईएसक्यूएल / डीबीएमएस"],
+                    projects: [
+                        { title: "3D वर्कस्पेस", cat: "THREE.JS / REACT", desc: "इंटरैक्टिव 3D डेवलपर वर्कस्पेस वातावरण।", year: "2025", img: "./photos/workspace_thumb.jpg", link: "./workspace.html" },
+                        { title: "फिनटेक डैशबोर्ड", cat: "D3.JS / REACT", desc: "रियल-टाइम वित्तीय एनालिटिक्स प्लेटफॉर्म।", year: "2025", img: "./photos/findash_thumb.jpg", link: "./findash.html" },
+                        { title: "SHAREX", cat: "REACT / ALGORITHMS", desc: "6-अंकीय कोड पुनर्प्राप्ति प्रणाली के साथ सुरक्षित फ़ाइल साझाकरण।", year: "2025", img: "./photos/sharex_thumb_banana.png", link: "./sharex.html" }
+                    ],
+                    gallery: ["./photos/cert1.jpg", "./photos/cert2.jpg", "./photos/cert6.jpg", "./photos/cert7.jpg", "./photos/cert3.jpg", "./photos/cert4.jpg", "./photos/cert5.png", "./photos/cert8.jpg"],
+                    firms: [
+                        { name: "आर पी कॉम्प्लेक्स", logo: "./photos/firm1.jpg", link: "https://maps.app.goo.gl/hZun3PkbJPkjJhmj6", type: "वाणिज्यिक परिसर" },
+                        { name: "उमिया बैटरी", logo: "./photos/firm2.jpg", link: "https://maps.app.goo.gl/otPQky2FRupjiVAx5", type: "ऑटोमोटिव सेवाएं" },
+                        { name: "विक्रम कृषि सेवा ट्रस्ट", logo: "./photos/firm3.jpg", link: "#", type: "कृषि ट्रस्ट" }
+                    ],
+                    photoUrl: "./photos/profile.jpg",
+                    resume: "./docs/resume.pdf"
+                }
+            },
+            Gujarati: {
+                ui: {
+                    menu: "મેનુ",
+                    cv: "સીવી",
+                    home: "હોમ",
+                    works: "કામ",
+                    about: "પરિચય",
+                    firms: "સંસ્થાઓ",
+                    gallery: "ગેલેરી",
+                    contact: "સંપર્ક",
+                    changeLanguage: "ભાષા બદલો",
+                    est: "સ્થા. 2025",
+                    myWorks: "મારા કામ",
+                    selectedProjects: "(પસંદ કરેલા પ્રોજેક્ટ્સ 2023-24)",
+                    viewProject: "પ્રોજેક્ટ જુઓ",
+                    view: "જુઓ",
+                    logo: "લોગો",
+                    viewLocation: "સ્થળ જુઓ",
+                    aboutTitle: "પરિચય અને",
+                    experience: "અનુભવ",
+                    aboutDesc: "મારી શૈક્ષણિક યાત્રા, તકનીકી ક્ષમતાઓ અને વ્યાવસાયિક ફોકસ ક્ષેત્રો પર એક વ્યાપક નજર.",
+                    downloadResume: "રિઝ્યુમ ડાઉનલોડ કરો",
+                    educationHistory: "શિક્ષણ ઇતિહાસ",
+                    skillStack: "કૌશલ્ય",
+                    socialUplink: "સોશિયલ મીડિયા",
+                    associatedFirms: "સહયોગી સંસ્થાઓ",
+                    firmsDesc: "આ પ્રતિષ્ઠિત સંસ્થાઓ અને વ્યવસાયિક સાહસો સાથે ગર્વથી જોડાયેલું.",
+                    certifications: "પ્રમાણપત્રો અને ગેલેરી",
+                    contactMe: "સંપર્ક",
+                    me: "કરો",
+                    email: "ઇમેઇલ",
+                    socials: "સોશિયલ",
+                    designBy: "ડિઝાઇન: મીત પટેલ",
+                    codedWith: "કોડ: રિએક્ટ",
+                    imgNotFound: "ઇમેજ મળી નથી",
+                    fileNotFound: "ફાઇલ મળી નથી",
+                    portfolio: "પોર્ટફોલિયો"
+                },
+                profile: {
+                    name: "મીતકુમાર પટેલ",
+                    role: "કોમ્પ્યુટર એન્જિનિયર",
+                    subRoles: ["AI ઉત્સાહી", "UI/UX ડિઝાઇનર", "ટ્રેડર", "વેબ ડેવલપર"],
+                    location: "ખેડા, ગુજરાત",
+                    contact: {
+                        email: "patelmup121312@gmail.com",
+                        linkedin: "https://www.linkedin.com/in/meet-patel-8a2a82218",
+                        youtube: "https://youtube.com/@PATELFARMER12",
+                        vlogs: "https://www.youtube.com/@MeetxVlogs",
+                        github: "https://github.com/patelmup1",
+                        insta1: "https://instagram.com/meet_creationx",
+                        insta2: "https://instagram.com/mr.meet_12"
+                    },
+                    summary: "હું ગુણવત્તાયુક્ત ઉત્પાદનો ડિઝાઇન કરું છું જે કંપનીને નફો લાવે છે. તે મને મારી કુશળતા સુધારવામાં પણ મદદ કરે છે. જુસ્સો, નિશ્ચય અને ઉકેલો માટેની તીક્ષ્ણ નજરનું મિશ્રણ.",
+                    education: [
+                        { year: "2023-2026", title: "બી.ઈ. કોમ્પ્યુટર એન્જિનિયરિંગ", org: "સરદાર પટેલ કોલેજ ઓફ એન્જિનિયરિંગ (GTU સંલગ્ન)" },
+                        { year: "2020", title: "ડિપ્લોમા કોમ્પ્યુટર એન્જિનિયરિંગ", org: "ગવર્મેન્ટ પોલિટેકનિક હિંમતનગર" }
+                    ],
+                    skills: ["મशीન લર્નિંગ", "UI/UX ડિઝાઇન", "વેબ ડેવલપમેન્ટ", "ટ્રેડિંગ અને ફાઇનાન્સ", "IoT હાર્ડવેર", "પાયથોન અને ડેટા", "SAP ABAP", "MySQL / DBMS"],
+                    projects: [
+                        { title: "3D વર્કસ્પેસ", cat: "THREE.JS / REACT", desc: "ઇન્ટરેક્ટિવ 3D ડેવલપર વર્કસ્પેસ પર્યાવરણ.", year: "2025", img: "./photos/workspace_thumb.jpg", link: "./workspace.html" },
+                        { title: "ફિનટેક ડેશબોર્ડ", cat: "D3.JS / REACT", desc: "રિયલ-ટાઇમ નાણાકીય એનાલિટિક્સ પ્લેટફોર્મ.", year: "2025", img: "./photos/findash_thumb.jpg", link: "./findash.html" },
+                        { title: "SHAREX", cat: "REACT / ALGORITHMS", desc: "6-અંકના કોડ પુનઃપ્રાપ્તિ સિસ્ટમ સાથે સુરક્ષિત ફાઇલ શેરિંગ.", year: "2025", img: "./photos/sharex_thumb_banana.png", link: "./sharex.html" }
+                    ],
+                    gallery: ["./photos/cert1.jpg", "./photos/cert2.jpg", "./photos/cert6.jpg", "./photos/cert7.jpg", "./photos/cert3.jpg", "./photos/cert4.jpg", "./photos/cert5.png", "./photos/cert8.jpg"],
+                    firms: [
+                        { name: "આર પી કોમ્પ્લેક્સ", logo: "./photos/firm1.jpg", link: "https://maps.app.goo.gl/hZun3PkbJPkjJhmj6", type: "કોમર્શિયલ કોમ્પ્લેક્સ" },
+                        { name: "ઉમિયા બેટરી", logo: "./photos/firm2.jpg", link: "https://maps.app.goo.gl/otPQky2FRupjiVAx5", type: "ઓટોમોટિવ સેવાઓ" },
+                        { name: "વિક્રમ કૃષિ સેવા ટ્રસ્ટ", logo: "./photos/firm3.jpg", link: "#", type: "કૃષિ ટ્રસ્ટ" }
+                    ],
+                    photoUrl: "./photos/profile.jpg",
+                    resume: "./docs/resume.pdf"
+                }
+            }
+        };
+
+        // --- COMPONENTS ---
+
+        const NavOverlay = ({ isOpen, onClose, onOpenLanguage, content }) => {
+            const { ui, profile } = content;
+            return (
+                <AnimatePresence>
+                    {isOpen && (
+                        <motion.div
+                            initial={{ x: "100%" }}
+                            animate={{ x: 0 }}
+                            exit={{ x: "100%" }}
+                            transition={{ type: "tween", duration: 0.4 }}
+                            className="fixed inset-0 z-50 bg-ink text-paper flex flex-col justify-between p-6 md:p-16"
+                        >
+                            <div className="flex justify-between items-center mb-8">
+                                <h2 className="font-head text-xl md:text-2xl font-bold tracking-widest">{ui.menu}</h2>
+                                <button onClick={onClose} className="p-2 hover:rotate-90 transition-transform">
+                                    <X size={28} />
+                                </button>
+                            </div>
+                            <nav className="flex flex-col gap-4 md:gap-6 text-3xl md:text-6xl font-head font-bold uppercase overflow-y-auto">
+                                <a href="#hero" onClick={onClose} className="hover:text-gray-500 transition-colors py-2">{ui.home}</a>
+                                <a href="#works" onClick={onClose} className="hover:text-gray-500 transition-colors py-2">{ui.works}</a>
+                                <a href="#about" onClick={onClose} className="hover:text-gray-500 transition-colors py-2">{ui.about}</a>
+                                <a href="#firms" onClick={onClose} className="hover:text-gray-500 transition-colors py-2">{ui.firms}</a>
+                                <a href="#gallery" onClick={onClose} className="hover:text-gray-500 transition-colors py-2">{ui.gallery}</a>
+                                <a href="#contact" onClick={onClose} className="hover:text-gray-500 transition-colors py-2">{ui.contact}</a>
+                                <button
+                                    onClick={() => {
+                                        onClose();
+                                        onOpenLanguage();
+                                    }}
+                                    className="text-left hover:text-gray-500 transition-colors py-2 flex items-center gap-4"
+                                >
+                                    {ui.changeLanguage} <span className="text-sm md:text-xl border border-ink rounded-full px-2 py-1">🌐</span>
+                                </button>
+                            <a href="./docs/resume.pdf" target="_blank" rel="noopener noreferrer" class="px-4 py-2 border border-ink rounded-sm hover:bg-ink hover:text-paper transition-colors ml-2">Resume</a><button id="themeToggle" class="p-2 rounded-full border border-ink hover:bg-ink hover:text-paper transition-colors ml-4" aria-label="Toggle Dark Mode">
+            <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 hidden">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+            </svg>
+            <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+            </svg>
+        </button>
+        </nav>
+                            <div className="flex gap-4 opacity-50 font-body text-xs md:text-sm mt-8">
+                                <span>{profile.location}</span>
+                                <span>•</span>
+                                <span>{ui.est}</span>
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            );
+        };
+
+        const Marquee = ({ items }) => (
+            <div className="py-3 md:py-4 border-y border-ink border-opacity-20 bg-paper">
+                <div className="marquee-container font-head text-2xl md:text-6xl font-bold uppercase tracking-tighter text-ink opacity-80">
+                    <div className="marquee-content">
+                        {items.map((item, i) => (
+                            <span key={i} className="mx-4 md:mx-8">
+                                {item} <span className="text-outline mx-2 md:mx-4">•</span>
+                            </span>
+                        ))}
+                        {/* Duplicate for seamless loop */}
+                        {items.map((item, i) => (
+                            <span key={`dup-${i}`} className="mx-4 md:mx-8">
+                                {item} <span className="text-outline mx-2 md:mx-4">•</span>
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        );
+
+        const ProjectCard = ({ project, ui }) => (
+            <div className="group relative border border-ink border-opacity-10 bg-paper hover:shadow-xl transition-all duration-500 min-h-[300px] md:h-[400px] flex flex-col justify-between overflow-hidden">
+
+                {/* Project Image Background */}
+                <div className="absolute inset-0 z-0">
+                    <img
+                        src={project.img}
+                        alt={project.title}
+                        className="w-full h-full object-cover opacity-30 group-hover:opacity-10 transition-opacity duration-500 grayscale group-hover:grayscale-0"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
+                </div>
+
+                <div className="absolute inset-0 bg-ink opacity-0 group-hover:opacity-5 transition-opacity duration-500 z-10"></div>
+
+                <div className="relative z-20 flex justify-between items-start p-4 md:p-6">
+                    <span className="font-body text-[10px] md:text-xs border border-ink rounded-full px-2 py-1 bg-paper/50 backdrop-blur-sm">{project.cat}</span>
+                    <span className="font-head font-bold text-lg md:text-xl">{project.year}</span>
+                </div>
+
+                <div className="relative z-20 transform md:translate-y-4 group-hover:translate-y-0 transition-transform duration-500 mt-auto p-4 md:p-6">
+                    <h3 className="font-head text-4xl md:text-6xl font-bold uppercase leading-none mb-2 md:mb-4 drop-shadow-sm">{project.title}</h3>
+                    <p className="font-body text-sm md:text-base text-gray-800 md:opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 font-medium mb-4">
+                        {project.desc}
+                    </p>
+                    <a
+                        href={project.link}
+                        target="_blank"
+                        className="inline-block px-4 py-2 border border-ink text-ink font-head font-bold uppercase text-xs md:text-sm hover:bg-ink hover:text-paper transition-colors md:opacity-0 group-hover:opacity-100 duration-500 delay-200"
+                    >
+                        {ui.viewProject}
+                    </a>
+                </div>
+
+                {/* Decorative large number */}
+                <div className="absolute -bottom-4 -right-4 font-head text-7xl md:text-9xl text-gray-300 -z-0 opacity-50">
+                    →
+                </div>
+            </div>
+        );
+
+        const GalleryItem = ({ src, alt, ui }) => (
+            <div className="relative aspect-square overflow-hidden bg-gray-200 group">
+                <img
+                    src={src}
+                    alt={alt}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
+                    onError={(e) => {
+                        e.target.style.display = 'none';
+                        e.target.parentElement.innerHTML = `<div class="w-full h-full flex items-center justify-center font-mono text-[10px] md:text-xs opacity-50 border border-ink border-opacity-10 p-2 text-center break-all">${ui.fileNotFound}<br><span class="opacity-50 text-[8px]">${src}</span></div>`;
+                    }}
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                    <button
+                        onClick={() => window.open(src, '_blank')}
+                        className="bg-paper text-ink px-4 py-2 md:px-6 md:py-3 font-head font-bold tracking-widest text-xs md:text-sm uppercase flex items-center gap-2 hover:bg-paper transition-colors"
+                    >
+                        <Eye size={16} /> {ui.view}
+                    </button>
+                </div>
+            </div>
+        );
+
+        const FirmCard = ({ firm, ui }) => (
+            <div className="bg-paper border border-ink border-opacity-10 p-6 flex flex-col items-center text-center hover:shadow-lg transition-shadow duration-300">
+                <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gray-100 mb-6 overflow-hidden border border-ink border-opacity-5 flex items-center justify-center">
+                    <img
+                        src={firm.logo}
+                        alt={firm.name}
+                        className="w-full h-full object-contain"
+                        onError={(e) => {
+                            e.target.style.display = 'none';
+                            e.target.parentElement.innerHTML = `<div class="font-head text-sm text-gray-400">${ui.logo}</div>`;
+                        }}
+                    />
+                </div>
+                <h3 className="font-head text-2xl md:text-3xl font-bold uppercase mb-2">{firm.name}</h3>
+                <span className="font-body text-xs md:text-sm opacity-60 mb-6 uppercase tracking-wider">{firm.type}</span>
+                <a
+                    href={firm.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-auto px-6 py-3 border border-ink text-ink font-head font-bold uppercase text-sm hover:bg-ink hover:text-paper transition-colors flex items-center gap-2"
+                >
+                    <MapPin size={16} /> {ui.viewLocation}
+                </a>
+            </div>
+        );
+
+        const LanguageSelector = ({ isVisible, onClose, setLanguage }) => {
+            const selectLanguage = (lang) => {
+                localStorage.setItem('language_preference', lang);
+                setLanguage(lang);
+                onClose();
+            };
+
+            if (!isVisible) return null;
+
+            return (
+                <div className="fixed inset-0 z-[100] bg-ink/90 backdrop-blur-sm flex items-center justify-center p-4">
+                    <motion.div
+                        initial={{ scale: 0.9, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        className="bg-paper text-ink p-6 md:p-12 max-w-2xl w-full border border-ink shadow-2xl flex flex-col gap-8 text-center max-h-[90vh] overflow-y-auto"
+                    >
+                        <div className="space-y-6">
+                            <div className="space-y-2">
+                                <h2 className="font-head text-2xl md:text-3xl font-bold">Which language feels like home? 🏠</h2>
+                                <p className="font-body text-lg opacity-70">Pick one below 😄</p>
+                            </div>
+
+                            <div className="w-full h-px bg-ink/10"></div>
+
+                            <div className="space-y-2">
+                                <h2 className="font-head text-2xl md:text-3xl font-bold">किस भाषा में घर जैसा लगेगा? 🏠</h2>
+                                <p className="font-body text-lg opacity-70">नीचे से चुनिए 😄</p>
+                            </div>
+
+                            <div className="w-full h-px bg-ink/10"></div>
+
+                            <div className="space-y-2">
+                                <h2 className="font-head text-2xl md:text-3xl font-bold">કઈ ભાષામાં ઘર જેવું લાગશે? 🏠</h2>
+                                <p className="font-body text-lg opacity-70">નીચે થી પસંદ કરો 😄</p>
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                            <button
+                                onClick={() => selectLanguage('English')}
+                                className="px-6 py-4 border-2 border-ink font-head font-bold text-xl uppercase hover:bg-ink hover:text-paper transition-all hover:scale-105"
+                            >
+                                English
+                            </button>
+                            <button
+                                onClick={() => selectLanguage('Hindi')}
+                                className="px-6 py-4 border-2 border-ink font-head font-bold text-xl uppercase hover:bg-ink hover:text-paper transition-all hover:scale-105"
+                            >
+                                Hindi
+                            </button>
+                            <button
+                                onClick={() => selectLanguage('Gujarati')}
+                                className="px-6 py-4 border-2 border-ink font-head font-bold text-xl uppercase hover:bg-ink hover:text-paper transition-all hover:scale-105"
+                            >
+                                Gujarati
+                            </button>
+                        </div>
+
+                        <div className="mt-8 pt-6 border-t border-ink/10 space-y-2 opacity-60">
+                            <p className="font-body text-sm">Note: You can change the language later from the Menu 🌐</p>
+                            <p className="font-body text-sm">नोट: आप बाद में मेनू से भाषा बदल सकते हैं 🌐</p>
+                            <p className="font-body text-sm">નોંધ: તમે પછીથી મેનુમાંથી ભાષા બદલી શકો છો 🌐</p>
+                        </div>
+                    </motion.div>
+                </div>
+            );
+        };
+
+        function App() {
+            const [isMenuOpen, setIsMenuOpen] = useState(false);
+            const [showLanguageModal, setShowLanguageModal] = useState(false);
+            const [language, setLanguage] = useState('English');
+
+            // Smooth scroll setup
+            useEffect(() => {
+                document.documentElement.style.scrollBehavior = 'smooth';
+
+                // Check language preference
+                const hasLanguage = localStorage.getItem('language_preference');
+                if (!hasLanguage) {
+                    setShowLanguageModal(true);
+                } else {
+                    setLanguage(hasLanguage);
+                }
+            }, []);
+
+            const content = TRANSLATIONS[language] || TRANSLATIONS['English'];
+            const { ui, profile } = content;
+
+            return (
+                <div className="min-h-screen relative selection:bg-ink selection:text-paper">
+                    <LanguageSelector
+                        isVisible={showLanguageModal}
+                        onClose={() => setShowLanguageModal(false)}
+                        setLanguage={setLanguage}
+                    />
+
+                    {/* --- HEADER --- */}
+                    <header className="fixed top-0 left-0 w-full z-40 flex justify-between items-center p-4 md:p-8 mix-blend-difference text-paper pointer-events-none">
+                        <div className="font-head text-lg md:text-xl font-bold tracking-widest pointer-events-auto uppercase">
+                            MEETPATEL<span className="text-gray-400">.ME</span>
+                        </div>
+                        <div className="flex gap-3 md:gap-4 pointer-events-auto">
+                            <button
+                                onClick={() => window.open(profile.resume, '_blank')}
+                                className="hidden md:flex items-center gap-2 font-head font-medium hover:opacity-70 transition-opacity"
+                            >
+                                <FileText size={18} /> {ui.cv}
+                            </button>
+                            <button
+                                onClick={() => setIsMenuOpen(true)}
+                                className="flex items-center gap-2 font-head font-bold hover:opacity-70 transition-opacity text-sm md:text-base"
+                            >
+                                {ui.menu} <Menu size={20} className="md:w-6 md:h-6" />
+                            </button>
+                        </div>
+                    </header>
+
+                    <NavOverlay
+                        isOpen={isMenuOpen}
+                        onClose={() => setIsMenuOpen(false)}
+                        onOpenLanguage={() => setShowLanguageModal(true)}
+                        content={content}
+                    />
+
+                    {/* --- HERO SECTION --- */}
+                    <section id="hero" className="relative min-h-screen flex flex-col justify-end pb-8 pt-24 px-4 md:px-8 border-b border-ink border-opacity-10">
+                        {/* Background Text Layer */}
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center z-0 opacity-5 pointer-events-none select-none">
+                            <h1 className="font-head text-[18vw] md:text-[15vw] leading-none font-bold">{ui.portfolio}</h1>
+                        </div>
+
+                        <div className="relative z-10 max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
+                            {/* Left Text */}
+                            <div className="md:col-span-7 flex flex-col gap-4 md:gap-6 order-2 md:order-1">
+                                <h1 className="font-head text-5xl sm:text-7xl md:text-9xl font-bold leading-[0.9] tracking-tighter">
+                                    <span className="block">MEETKUMAR</span>
+                                    <span className="block text-outline">PATEL</span>
+                                </h1>
+                                <div className="max-w-md font-body text-sm md:text-lg leading-relaxed mt-2 md:mt-4">
+                                    {profile.summary}
+                                </div>
+                                <div className="flex flex-wrap gap-2 md:gap-4 mt-2 md:mt-4">
+                                    {profile.subRoles.map((role, i) => (
+                                        <span key={i} className="px-2 py-1 md:px-3 border border-ink rounded-full text-[10px] md:text-xs font-bold uppercase hover:bg-ink hover:text-paper transition-colors">
+                                            {role}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Right Image */}
+                            <div className="md:col-span-5 relative order-1 md:order-2 mb-4 md:mb-0">
+                                <div className="aspect-[3/4] bg-gray-300 overflow-hidden relative grayscale hover:grayscale-0 transition-all duration-700 max-h-[50vh] md:max-h-none w-full md:w-auto mx-auto">
+                                    <img
+                                        src={profile.photoUrl}
+                                        alt="Profile"
+                                        className="w-full h-full object-cover"
+                                        onError={(e) => {
+                                            e.target.style.display = 'none';
+                                            e.target.parentElement.innerHTML = `<div class="w-full h-full flex items-center justify-center font-head text-xl md:text-2xl bg-gray-200">${ui.imgNotFound}</div>`;
+                                        }}
+                                    />
+                                    {/* Overlay lines */}
+                                    <div className="absolute top-2 right-2 md:top-4 md:right-4 text-white font-mono text-[10px] md:text-xs z-20 mix-blend-difference">
+                                        ID: 8A2A-82218
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* --- MARQUEE --- */}
+                    <Marquee items={profile.skills} />
+
+                    {/* --- WORKS SECTION --- */}
+                    <section id="works" className="py-12 md:py-32 px-4 md:px-8 max-w-7xl mx-auto">
+                        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 md:mb-16 border-b border-ink border-opacity-20 pb-4 gap-2">
+                            <h2 className="font-head text-4xl md:text-8xl font-bold uppercase">{ui.myWorks}</h2>
+                            <span className="font-mono text-xs md:text-sm opacity-50">{ui.selectedProjects}</span>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1">
+                            {profile.projects.map((proj, i) => (
+                                <ProjectCard key={i} project={proj} ui={ui} />
+                            ))}
+                        </div>
+                    </section>
+
+                    {/* --- INFO / STAGES SECTION --- */}
+                    <section id="about" className="py-12 md:py-20 bg-ink text-paper px-4 md:px-8">
+                        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16">
+
+                            {/* Left: Sticky Title (Static on mobile) */}
+                            <div className="h-full">
+                                <div className="lg:sticky lg:top-32">
+                                    <h2 className="font-head text-4xl md:text-8xl font-bold uppercase leading-none mb-4 md:mb-8">
+                                        {ui.aboutTitle}<br />
+                                        <span className="text-outline text-paper opacity-30">{ui.experience}</span>
+                                    </h2>
+                                    <p className="font-body opacity-60 max-w-md text-sm md:text-base">
+                                        {ui.aboutDesc}
+                                    </p>
+
+                                    <div className="mt-8 md:mt-12">
+                                        <button
+                                            onClick={() => window.open(profile.resume, '_blank')}
+                                            className="px-6 py-3 md:px-8 md:py-4 bg-paper text-ink font-head font-bold text-lg md:text-xl uppercase hover:bg-gray-200 transition-colors flex items-center gap-2 w-full md:w-auto justify-center md:justify-start"
+                                        >
+                                            {ui.downloadResume} <Download size={20} />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Right: Accordion List */}
+                            <div className="flex flex-col border-t border-paper border-opacity-20 mt-8 lg:mt-0">
+                                <div className="border-b border-paper border-opacity-20 py-6 md:py-8">
+                                    <div className="flex items-baseline gap-4 mb-4">
+                                        <span className="font-mono text-accent text-sm md:text-base">01</span>
+                                        <h3 className="font-head text-2xl md:text-3xl uppercase">{ui.educationHistory}</h3>
+                                    </div>
+                                    <div className="pl-8 md:pl-10 space-y-4 md:space-y-6">
+                                        {profile.education.map((edu, i) => (
+                                            <div key={i}>
+                                                <div className="flex justify-between text-xs md:text-sm opacity-50 font-mono mb-1">
+                                                    <span>{edu.year}</span>
+                                                    <span>{edu.org}</span>
+                                                </div>
+                                                <div className="font-head text-lg md:text-xl">{edu.title}</div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div className="border-b border-paper border-opacity-20 py-6 md:py-8">
+                                    <div className="flex items-baseline gap-4 mb-4">
+                                        <span className="font-mono text-accent text-sm md:text-base">02</span>
+                                        <h3 className="font-head text-2xl md:text-3xl uppercase">{ui.skillStack}</h3>
+                                    </div>
+                                    <div className="pl-8 md:pl-10 flex flex-wrap gap-2">
+                                        {profile.skills.map((skill, i) => (
+                                            <span key={i} className="px-2 py-1 md:px-3 border border-paper border-opacity-30 rounded-full text-[10px] md:text-xs font-mono hover:bg-paper hover:text-ink transition-colors cursor-default">
+                                                {skill}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div className="border-b border-paper border-opacity-20 py-6 md:py-8">
+                                    <div className="flex items-baseline gap-4 mb-4">
+                                        <span className="font-mono text-accent text-sm md:text-base">03</span>
+                                        <h3 className="font-head text-2xl md:text-3xl uppercase">{ui.socialUplink}</h3>
+                                    </div>
+                                    <div className="pl-8 md:pl-10 grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm md:text-base">
+                                        <a href={profile.contact.linkedin} target="_blank" className="flex items-center gap-2 hover:text-accent transition-colors">
+                                            <Linkedin size={18} /> LinkedIn
+                                        </a>
+                                        <a href={profile.contact.github} target="_blank" className="flex items-center gap-2 hover:text-accent transition-colors">
+                                            <Github size={18} /> GitHub
+                                        </a>
+                                        <a href={profile.contact.youtube} target="_blank" className="flex items-center gap-2 hover:text-accent transition-colors">
+                                            <Youtube size={18} /> YouTube (Tech)
+                                        </a>
+                                        <a href={profile.contact.insta1} target="_blank" className="flex items-center gap-2 hover:text-accent transition-colors">
+                                            <Instagram size={18} /> Instagram
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* --- FIRMS SECTION (NEW) --- */}
+                    <section id="firms" className="py-12 md:py-32 px-4 md:px-8 max-w-7xl mx-auto border-t border-ink border-opacity-10">
+                        <div className="mb-12 md:mb-20 text-center">
+                            <h2 className="font-head text-4xl md:text-7xl font-bold uppercase mb-4">{ui.associatedFirms}</h2>
+                            <p className="font-body opacity-60 text-sm md:text-base max-w-2xl mx-auto">
+                                {ui.firmsDesc}
+                            </p>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                            {profile.firms.map((firm, i) => (
+                                <FirmCard key={i} firm={firm} ui={ui} />
+                            ))}
+                        </div>
+                    </section>
+
+                    {/* --- GALLERY SECTION --- */}
+                    <section id="gallery" className="py-12 md:py-32 px-4 md:px-8">
+                        <div className="max-w-7xl mx-auto">
+                            <h2 className="font-head text-3xl md:text-6xl font-bold uppercase mb-8 text-center">{ui.certifications}</h2>
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
+                                {profile.gallery.map((img, i) => (
+                                    <GalleryItem key={i} src={img} alt={`Certificate ${i}`} ui={ui} />
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* --- FOOTER / CONTACT --- */}
+                    <section id="contact" className="min-h-[60vh] md:min-h-[80vh] flex flex-col justify-between bg-paper px-4 md:px-8 pt-12 md:pt-20 pb-8 border-t border-ink border-opacity-10">
+                        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
+                            <div>
+                                <h2 className="font-head text-5xl md:text-9xl font-bold uppercase leading-[0.8]">
+                                    {ui.contactMe}<br />{ui.me}
+                                </h2>
+                            </div>
+                            <div className="flex flex-col justify-end gap-6 md:gap-8">
+                                <div>
+                                    <p className="font-mono text-xs md:text-sm opacity-50 mb-2">{ui.email}</p>
+                                    <a href={`mailto:${profile.contact.email}`} className="font-head text-xl md:text-4xl hover:underline break-all">
+                                        {profile.contact.email}
+                                    </a>
+                                </div>
+                                <div>
+                                    <p className="font-mono text-xs md:text-sm opacity-50 mb-2">{ui.socials}</p>
+                                    <div className="flex flex-wrap gap-4 md:gap-6 font-head text-lg md:text-xl">
+                                        <a href={profile.contact.linkedin} className="hover:line-through decoration-2">LINKEDIN</a>
+                                        <a href={profile.contact.github} className="hover:line-through decoration-2">GITHUB</a>
+                                        <a href={profile.contact.insta1} target="_blank" className="hover:line-through decoration-2">INSTAGRAM</a>
+                                        <a href={profile.contact.youtube} className="hover:line-through decoration-2">YOUTUBE</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="w-full flex justify-between items-end mt-12 md:mt-20 border-t border-ink border-opacity-20 pt-4">
+                            <div className="font-head text-5xl md:text-9xl font-bold opacity-10 select-none">2025</div>
+                            <div className="font-mono text-[10px] md:text-xs text-right opacity-50">
+                                {ui.designBy}<br />
+                                {ui.codedWith}
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+            );
+        }
+
+        const root = createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+<!-- Scroll to Top -->
+<button id="scrollTopBtn" class="fixed bottom-8 right-8 bg-ink text-paper p-4 rounded-full shadow-2xl translate-y-24 opacity-0 transition-all duration-300 z-50 hover:-translate-y-1 focus:outline-none" aria-label="Scroll to top">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+    </svg>
+</button>
+<script>
+    const scrollBtn = document.getElementById('scrollTopBtn');
+    if (scrollBtn) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollBtn.classList.remove('translate-y-24', 'opacity-0');
+            } else {
+                scrollBtn.classList.add('translate-y-24', 'opacity-0');
+            }
+        });
+        scrollBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+</script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then(registration => console.log('SW registered:', registration))
+        .catch(error => console.log('SW registration failed:', error));
+    });
+  }
+</script>
+<script>
+    const themeToggle = document.getElementById('themeToggle');
+    const sunIcon = document.getElementById('sunIcon');
+    const moonIcon = document.getElementById('moonIcon');
+    const html = document.documentElement;
+
+    // Check local storage
+    if (localStorage.getItem('theme') === 'dark') {
+        html.setAttribute('data-theme', 'dark');
+        sunIcon.classList.remove('hidden');
+        moonIcon.classList.add('hidden');
+    }
+
+    themeToggle.addEventListener('click', () => {
+        if (html.getAttribute('data-theme') === 'dark') {
+            html.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'light');
+            sunIcon.classList.add('hidden');
+            moonIcon.classList.remove('hidden');
+        } else {
+            html.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+            sunIcon.classList.remove('hidden');
+            moonIcon.classList.add('hidden');
+        }
+    });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    const elementsToAnimate = document.querySelectorAll('h1, h2, h3, p, article, .group, img, blockquote');
+    elementsToAnimate.forEach(el => {
+      el.classList.add('reveal');
+      observer.observe(el);
+    });
+  });
+</script>
+<div id="cursor"></div><div id="noise"></div>
+<script>
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+  });
+</script>
+</body>
+
+</html>

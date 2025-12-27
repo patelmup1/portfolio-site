@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://cdn.tailwindcss.com; connect-src 'self' https://formsubmit.co;">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>ShareX | Secure File Transfer React App by Meet Patel</title>
+    <meta property="og:title" content="ShareX | Secure File Transfer React App by Meet Patel">
+    <meta property="og:description" content="Portfolio of Meet Patel - Software Engineer & Web Developer. Explore interactive 3D projects and technical deep dives.">
+    <meta property="og:image" content="https://meetpatel.me/photos/profile.webp">
+    <meta property="og:url" content="https://meetpatel.me/">
+    <meta property="og:type" content="website">
+    <meta name="description"
+        content="Case study of ShareX, a secure peer-to-peer file sharing application. Features 6-digit code retrieval, auto-expiry, and React architecture.">
+    <meta name="keywords"
+        content="sharex file sharing, react file transfer app, secure file share case study, web developer portfolio projects, p2p sharing web app">
+    <meta name="author" content="Meetkumar Patel">
+    <link rel="canonical" href="https://meetpatel.me/project-sharex.html">
+
+    <!-- Custom Favicon -->
+    <link rel="icon" href="./favicon.jpg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Oswald:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: { extend: { colors: { 'paper': 'var(--color-paper)', 'ink': 'var(--color-ink)', 'accent': 'var(--color-accent)' }, fontFamily: { 'head': ['Oswald', 'sans-serif'], 'body': ['Manrope', 'sans-serif'] } } }
+        }
+    </script>
+    <style>
+        :root { --color-paper: #E8E6E1; --color-ink: #111111; --color-accent: #444444; } [data-theme='dark'] { --color-paper: #111111; --color-ink: #E8E6E1; --color-accent: #AASSAA; } body { background-color: var(--color-paper); color: var(--color-ink); transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+        }
+    </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Meet Patel",
+  "url": "https://meetpatel.me",
+  "image": "https://meetpatel.me/photos/profile.webp",
+  "sameAs": [
+    "https://www.linkedin.com/in/meet-patel-8a2a82218",
+    "https://github.com/patelmup1",
+    "https://instagram.com/meet_creationx"
+  ],
+  "jobTitle": "Software Engineer",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Kheda",
+    "addressRegion": "Gujarat",
+    "addressCountry": "IN"
+  }
+}
+</script>
+<style>
+  @media print {
+    header, nav, #scrollTopBtn, footer { display: none !important; }
+    body { background: white !important; color: black !important; padding: 0 !important; }
+    main { padding-top: 0 !important; }
+  }
+</style>
+<link rel="manifest" href="./manifest.json">
+    <link rel="apple-touch-icon" href="./favicon.jpg">
+    <link rel="preload" href="./photos/profile.webp" as="image">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Oswald:wght@400;500;700&display=swap" as="style">
+<style>
+  html { scroll-behavior: smooth; }
+  .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+  .reveal-visible { opacity: 1; transform: translateY(0); }
+</style>
+<style>
+  #cursor { position: fixed; top: 0; left: 0; width: 20px; height: 20px; border: 1px solid var(--color-ink); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: transform 0.1s, width 0.3s, height 0.3s; mix-blend-mode: difference; }
+  #cursor.hovered { width: 50px; height: 50px; background: var(--color-ink); opacity: 0.1; }
+  #noise { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9998; opacity: 0.05; background: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="1"/%3E%3C/svg%3E'); }
+</style>
+</head>
+
+<body class="selection:bg-ink selection:text-paper font-body">
+
+    <!-- Navigation -->
+    <header
+        class="fixed top-0 left-0 w-full z-40 flex justify-between items-center p-4 md:p-8 bg-paper/90 backdrop-blur-sm border-b border-ink border-opacity-10">
+        <div class="font-head text-lg md:text-xl font-bold tracking-widest uppercase"><a href="index.html"
+                class="hover:opacity-70">MEETPATEL<span class="text-gray-400">.ME</span></a></div>
+        <nav class="hidden md:flex gap-6 font-head font-bold uppercase text-sm">
+            <a href="projects.html" class="hover:text-gray-500 transition-colors"><- Back to Projects</a>
+        <a href="./docs/resume.pdf" target="_blank" rel="noopener noreferrer" class="px-4 py-2 border border-ink rounded-sm hover:bg-ink hover:text-paper transition-colors ml-2">Resume</a><button id="themeToggle" class="p-2 rounded-full border border-ink hover:bg-ink hover:text-paper transition-colors ml-4" aria-label="Toggle Dark Mode">
+            <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 hidden">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+            </svg>
+            <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+            </svg>
+        </button>
+        </nav>
+    </header>
+
+    <main class="pt-32 pb-20 px-4 md:px-8 max-w-5xl mx-auto">
+
+        <!-- Hero -->
+        <div class="mb-16">
+            <span class="font-mono text-sm opacity-50 uppercase tracking-widest mb-2 block">Case Study 03</span>
+            <h1 class="font-head text-5xl md:text-8xl font-bold uppercase mb-8">ShareX File Transfer</h1>
+            <div class="flex flex-wrap gap-4 mb-8">
+                <span class="px-3 py-1 border border-ink rounded-full text-xs font-bold uppercase">React.js</span>
+                <span class="px-3 py-1 border border-ink rounded-full text-xs font-bold uppercase">WebSockets</span>
+                <span class="px-3 py-1 border border-ink rounded-full text-xs font-bold uppercase">Encryption</span>
+                <span class="px-3 py-1 border border-ink rounded-full text-xs font-bold uppercase">UX Design</span>
+            </div>
+            <img loading="lazy" src="./photos/sharex_thumb_banana.webp" alt="ShareX App Screenshot"
+                class="w-full h-auto shadow-2xl border border-ink border-opacity-10">
+        </div>
+
+        <!-- Links -->
+        <div class="flex gap-4 mb-16">
+            <a href="sharex.html" target="_blank" rel="noopener noreferrer"
+                class="px-8 py-4 bg-ink text-paper font-head font-bold uppercase hover:bg-opacity-90 transition-opacity">Launch
+                Live Demo</a>
+            <a href="https://github.com/patelmup1" target="_blank" rel="noopener noreferrer"
+                class="px-8 py-4 border border-ink font-head font-bold uppercase hover:bg-ink hover:text-paper transition-colors">View
+                Source Code</a>
+        </div>
+
+        <!-- Content (300+ Words) -->
+        <article
+            class="prose prose-lg prose-headings:font-head prose-headings:uppercase prose-headings:font-bold max-w-none text-ink opacity-90">
+
+            <h2>Project Overview</h2>
+            <p>
+                We live in a world where sharing a file often means logging into a cloud provider, uploading, changing
+                permissions, and emailing a massive link. <strong>ShareX</strong> simplifies this process down to its
+                essence: Upload
+                a file, get a 6-digit code, share the code.
+            </p>
+            <p>
+                Inspired by services like SendAnywhere, ShareX is a peer-to-peer (or relay-assisted) file sharing web
+                application designed for instant, ad-hoc transfer. It prioritizes speed and ephemeral security—files are
+                not meant to live forever, they are meant to be moved now.
+            </p>
+
+            <h2>The Challenge</h2>
+            <p>
+                <strong>Simplicity vs. Security:</strong> How do we make file sharing effortless while ensuring that
+                unauthorized
+                users can't guess the codes? A 6-digit code space is relatively small (1 million combinations).
+            </p>
+            <p>
+                <strong>Cross-Device Compatibility:</strong> Users often want to move a file from their phone to their
+                laptop. The
+                app needed to work seamlessly across different browsers, operating systems, and network conditions
+                without installing native apps.
+            </p>
+
+            <h2>Technical Solution</h2>
+            <p>
+                The frontend is built with <strong>React</strong>, employing a minimal aesthetic to reduce cognitive
+                load. The core
+                mechanic relies on a robust backend signaling server (simulated or real depending on deployment) that
+                pairs the "Sender" and "Receiver" via the 6-digit code.
+            </p>
+            <ul>
+                <li><strong>Code Generation Algorithm:</strong> To prevent brute-force attacks on the 6-digit codes, I
+                    implemented rate limiting and short time-to-live (TTL) for every generated code. Codes expire
+                    automatically after 10 minutes or after a successful download.</li>
+                <li><strong>Progressive Web App (PWA) Features:</strong> I utilized Service Workers to allow the app to
+                    load instantly even on flaky networks. The UI provides real-time feedback (transfer progress bars,
+                    success notifications) which is crucial for user trust during file operations.</li>
+                <li><strong>State Management:</strong> Managing the upload state (Idle -> Handshaking -> Uploading ->
+                    Completed) required a finite state machine approach to prevent UI bugs, such as a user trying to
+                    upload two files at once or canceling mid-transfer.</li>
+            </ul>
+
+            <h2>Results & Impact</h2>
+            <p>
+                ShareX demonstrates the ability to build functional, utility-driven web applications that solve daily
+                problems. It highlights skills in algorithm design (code generation), network logic (file streams), and
+                user-centric product design. It shows that I can build tools that people actually want to use.
+            </p>
+
+        </article>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-ink text-paper py-12 px-4 md:px-8">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-left">
+                <div class="font-head text-xl font-bold uppercase">Meet Patel</div>
+                <div class="font-mono text-xs opacity-50 mt-1">Kheda, Gujarat, India</div>
+            </div>
+            <div class="font-mono text-xs opacity-50">
+                &copy; 2025 Meet Patel. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+<!-- Scroll to Top -->
+<button id="scrollTopBtn" class="fixed bottom-8 right-8 bg-ink text-paper p-4 rounded-full shadow-2xl translate-y-24 opacity-0 transition-all duration-300 z-50 hover:-translate-y-1 focus:outline-none" aria-label="Scroll to top">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+    </svg>
+</button>
+<script>
+    const scrollBtn = document.getElementById('scrollTopBtn');
+    if (scrollBtn) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollBtn.classList.remove('translate-y-24', 'opacity-0');
+            } else {
+                scrollBtn.classList.add('translate-y-24', 'opacity-0');
+            }
+        });
+        scrollBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+</script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then(registration => console.log('SW registered:', registration))
+        .catch(error => console.log('SW registration failed:', error));
+    });
+  }
+</script>
+<script>
+    const themeToggle = document.getElementById('themeToggle');
+    const sunIcon = document.getElementById('sunIcon');
+    const moonIcon = document.getElementById('moonIcon');
+    const html = document.documentElement;
+
+    // Check local storage
+    if (localStorage.getItem('theme') === 'dark') {
+        html.setAttribute('data-theme', 'dark');
+        sunIcon.classList.remove('hidden');
+        moonIcon.classList.add('hidden');
+    }
+
+    themeToggle.addEventListener('click', () => {
+        if (html.getAttribute('data-theme') === 'dark') {
+            html.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'light');
+            sunIcon.classList.add('hidden');
+            moonIcon.classList.remove('hidden');
+        } else {
+            html.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+            sunIcon.classList.remove('hidden');
+            moonIcon.classList.add('hidden');
+        }
+    });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    const elementsToAnimate = document.querySelectorAll('h1, h2, h3, p, article, .group, img, blockquote');
+    elementsToAnimate.forEach(el => {
+      el.classList.add('reveal');
+      observer.observe(el);
+    });
+  });
+</script>
+<div id="cursor"></div><div id="noise"></div>
+<script>
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+  });
+</script>
+</body>
+
+</html>

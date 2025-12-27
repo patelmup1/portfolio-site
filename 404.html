@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://cdn.tailwindcss.com; connect-src 'self' https://formsubmit.co;">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 | Page Not Found</title>
+    <meta property="og:title" content="404 | Page Not Found">
+    <meta property="og:description" content="Portfolio of Meet Patel - Software Engineer & Web Developer. Explore interactive 3D projects and technical deep dives.">
+    <meta property="og:image" content="https://meetpatel.me/photos/profile.webp">
+    <meta property="og:url" content="https://meetpatel.me/">
+    <meta property="og:type" content="website">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: { extend: { colors: { 'paper': 'var(--color-paper)', 'ink': 'var(--color-ink)' }, fontFamily: { 'head': ['Oswald', 'sans-serif'], 'body': ['Manrope', 'sans-serif'] } } }
+        }
+    </script>
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Oswald:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root { --color-paper: #E8E6E1; --color-ink: #111111; --color-accent: #444444; } [data-theme='dark'] { --color-paper: #111111; --color-ink: #E8E6E1; --color-accent: #AASSAA; } body { background-color: var(--color-paper); color: var(--color-ink); transition: background-color 0.3s, color 0.3s;
+        }
+    </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Meet Patel",
+  "url": "https://meetpatel.me",
+  "image": "https://meetpatel.me/photos/profile.webp",
+  "sameAs": [
+    "https://www.linkedin.com/in/meet-patel-8a2a82218",
+    "https://github.com/patelmup1",
+    "https://instagram.com/meet_creationx"
+  ],
+  "jobTitle": "Software Engineer",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Kheda",
+    "addressRegion": "Gujarat",
+    "addressCountry": "IN"
+  }
+}
+</script>
+<style>
+  @media print {
+    header, nav, #scrollTopBtn, footer { display: none !important; }
+    body { background: white !important; color: black !important; padding: 0 !important; }
+    main { padding-top: 0 !important; }
+  }
+</style>
+<link rel="manifest" href="./manifest.json">
+    <link rel="apple-touch-icon" href="./favicon.jpg">
+    <link rel="preload" href="./photos/profile.webp" as="image">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Oswald:wght@400;500;700&display=swap" as="style">
+<style>
+  html { scroll-behavior: smooth; }
+  .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+  .reveal-visible { opacity: 1; transform: translateY(0); }
+</style>
+<style>
+  #cursor { position: fixed; top: 0; left: 0; width: 20px; height: 20px; border: 1px solid var(--color-ink); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: transform 0.1s, width 0.3s, height 0.3s; mix-blend-mode: difference; }
+  #cursor.hovered { width: 50px; height: 50px; background: var(--color-ink); opacity: 0.1; }
+  #noise { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9998; opacity: 0.05; background: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="1"/%3E%3C/svg%3E'); }
+</style>
+</head>
+
+<body class="flex flex-col items-center justify-center min-h-screen p-4 text-center">
+
+    <div class="max-w-2xl">
+        <h1 class="font-head text-9xl font-bold opacity-10">404</h1>
+        <h2 class="font-head text-4xl md:text-6xl font-bold uppercase mb-6 -mt-12 relative z-10">Page Not Found</h2>
+
+        <p class="font-body text-xl opacity-70 mb-12 max-w-lg mx-auto">
+            The page you're looking for was moved, removed, renamed, or might never have existed.
+        </p>
+
+        <div class="flex flex-wrap gap-4 justify-center">
+            <a href="index.html"
+                class="px-8 py-4 bg-ink text-paper font-head font-bold uppercase tracking-widest hover:bg-opacity-90 transition-opacity">
+                Back to Home
+            </a>
+            <a href="projects.html"
+                class="px-8 py-4 border border-ink font-head font-bold uppercase tracking-widest hover:bg-ink hover:text-paper transition-colors">
+                View Projects
+            </a>
+        </div>
+    </div>
+
+<!-- Scroll to Top -->
+<button id="scrollTopBtn" class="fixed bottom-8 right-8 bg-ink text-paper p-4 rounded-full shadow-2xl translate-y-24 opacity-0 transition-all duration-300 z-50 hover:-translate-y-1 focus:outline-none" aria-label="Scroll to top">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+    </svg>
+</button>
+<script>
+    const scrollBtn = document.getElementById('scrollTopBtn');
+    if (scrollBtn) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollBtn.classList.remove('translate-y-24', 'opacity-0');
+            } else {
+                scrollBtn.classList.add('translate-y-24', 'opacity-0');
+            }
+        });
+        scrollBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+</script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then(registration => console.log('SW registered:', registration))
+        .catch(error => console.log('SW registration failed:', error));
+    });
+  }
+</script>
+<script>
+    const themeToggle = document.getElementById('themeToggle');
+    const sunIcon = document.getElementById('sunIcon');
+    const moonIcon = document.getElementById('moonIcon');
+    const html = document.documentElement;
+
+    // Check local storage
+    if (localStorage.getItem('theme') === 'dark') {
+        html.setAttribute('data-theme', 'dark');
+        sunIcon.classList.remove('hidden');
+        moonIcon.classList.add('hidden');
+    }
+
+    themeToggle.addEventListener('click', () => {
+        if (html.getAttribute('data-theme') === 'dark') {
+            html.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'light');
+            sunIcon.classList.add('hidden');
+            moonIcon.classList.remove('hidden');
+        } else {
+            html.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+            sunIcon.classList.remove('hidden');
+            moonIcon.classList.add('hidden');
+        }
+    });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    const elementsToAnimate = document.querySelectorAll('h1, h2, h3, p, article, .group, img, blockquote');
+    elementsToAnimate.forEach(el => {
+      el.classList.add('reveal');
+      observer.observe(el);
+    });
+  });
+</script>
+<div id="cursor"></div><div id="noise"></div>
+<script>
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+  });
+</script>
+</body>
+
+</html>

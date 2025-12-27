@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://cdn.tailwindcss.com; connect-src 'self' https://formsubmit.co;">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>Meet Patel | Web Developer Portfolio India</title>
+    <meta property="og:title" content="Meet Patel | Web Developer Portfolio India">
+    <meta property="og:description"
+        content="Portfolio of Meet Patel - Software Engineer & Web Developer. Explore interactive 3D projects and technical deep dives.">
+    <meta property="og:image" content="https://meetpatel.me/photos/profile.webp">
+    <meta property="og:url" content="https://meetpatel.me/">
+    <meta property="og:type" content="website">
+    <meta name="description"
+        content="Meet Patel is a frontend web developer from India specializing in React, Three.js, and high-performance UI designs. Explore my portfolio of interactive projects.">
+    <meta name="keywords"
+        content="meet patel portfolio, web developer india, frontend developer, software engineer portfolio, react developer, three.js developer, ahmedabad web designer, creative developer india">
+    <meta name="author" content="Meetkumar Patel">
+    <link rel="canonical" href="https://meetpatel.me/index.html">
+
+    <!-- Custom Favicon -->
+    <link rel="icon" href="./favicon.jpg">
+
+    <!-- Fonts: Oswald (Headings) & Manrope (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Oswald:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'paper': 'var(--color-paper)',
+                        'ink': 'var(--color-ink)',
+                        'accent': 'var(--color-accent)'
+                    },
+                    fontFamily: {
+                        'head': ['Oswald', 'sans-serif'],
+                        'body': ['Manrope', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root { --color-paper: #E8E6E1; --color-ink: #111111; --color-accent: #444444; } [data-theme='dark'] { --color-paper: #111111; --color-ink: #E8E6E1; --color-accent: #AASSAA; } body { background-color: var(--color-paper); color: var(--color-ink); transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+            cursor: default;
+        }
+
+        .text-outline {
+            -webkit-text-stroke: 1px #111;
+            color: transparent;
+        }
+
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: scroll 20s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+    </style>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Meet Patel",
+  "url": "https://meetpatel.me",
+  "image": "https://meetpatel.me/photos/profile.webp",
+  "sameAs": [
+    "https://www.linkedin.com/in/meet-patel-8a2a82218",
+    "https://github.com/patelmup1",
+    "https://instagram.com/meet_creationx"
+  ],
+  "jobTitle": "Software Engineer",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Kheda",
+    "addressRegion": "Gujarat",
+    "addressCountry": "IN"
+  }
+}
+</script>
+    <style>
+        @media print {
+
+            header,
+            nav,
+            #scrollTopBtn,
+            footer {
+                display: none !important;
+            }
+
+            body {
+                background: white !important;
+                color: black !important;
+                padding: 0 !important;
+            }
+
+            main {
+                padding-top: 0 !important;
+            }
+        }
+    </style>
+    <link rel="manifest" href="./manifest.json">
+    <link rel="apple-touch-icon" href="./favicon.jpg">
+    <link rel="preload" href="./photos/profile.webp" as="image">
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Oswald:wght@400;500;700&display=swap"
+        as="style">
+<style>
+  html { scroll-behavior: smooth; }
+  .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+  .reveal-visible { opacity: 1; transform: translateY(0); }
+</style>
+<style>
+  #cursor { position: fixed; top: 0; left: 0; width: 20px; height: 20px; border: 1px solid var(--color-ink); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: transform 0.1s, width 0.3s, height 0.3s; mix-blend-mode: difference; }
+  #cursor.hovered { width: 50px; height: 50px; background: var(--color-ink); opacity: 0.1; }
+  #noise { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9998; opacity: 0.05; background: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="1"/%3E%3C/svg%3E'); }
+</style>
+</head>
+
+<body class="selection:bg-ink selection:text-paper">
+
+    <!-- Navigation -->
+    <header
+        class="fixed top-0 left-0 w-full z-40 flex justify-between items-center p-4 md:p-8 mix-blend-difference text-paper pointer-events-none">
+        <div class="font-head text-lg md:text-xl font-bold tracking-widest pointer-events-auto uppercase">
+            <a href="index.html" class="hover:opacity-70">MEETPATEL<span class="text-gray-400">.ME</span></a>
+        </div>
+        <nav class="hidden md:flex gap-6 pointer-events-auto font-head font-bold uppercase text-sm items-center">
+            <a href="projects.html" class="hover:text-gray-400 transition-colors">Projects</a>
+            <a href="skills.html" class="hover:text-gray-400 transition-colors">Skills</a>
+            <a href="about.html" class="hover:text-gray-400 transition-colors">About</a>
+            <a href="contact.html" class="hover:text-gray-400 transition-colors">Contact</a>
+            <a href="blog.html" class="hover:text-gray-400 transition-colors">Blog</a>
+            <a href="app.html"
+                class="ml-4 px-4 py-2 border border-paper text-paper hover:bg-paper hover:text-ink transition-colors rounded-sm">
+                Interactive 3D Site
+            </a>
+            <a href="./docs/resume.pdf" target="_blank" rel="noopener noreferrer"
+                class="px-4 py-2 border border-ink rounded-sm hover:bg-ink hover:text-paper transition-colors ml-2">Resume</a>
+        <button id="themeToggle" class="p-2 rounded-full border border-ink hover:bg-ink hover:text-paper transition-colors ml-4" aria-label="Toggle Dark Mode">
+            <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 hidden">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+            </svg>
+            <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+            </svg>
+        </button>
+        </nav>
+        <div class="md:hidden pointer-events-auto">
+            <a href="app.html"
+                class="font-head font-bold uppercase text-sm border border-paper px-3 py-1 rounded-sm text-paper">3D
+                Site</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero"
+        class="relative min-h-screen flex flex-col justify-end pb-8 pt-24 px-4 md:px-8 border-b border-ink border-opacity-10">
+        <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center z-0 opacity-5 pointer-events-none select-none">
+            <div class="font-head text-[18vw] md:text-[15vw] leading-none font-bold">PORTFOLIO</div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
+            <div class="md:col-span-7 flex flex-col gap-4 md:gap-6 order-2 md:order-1">
+                <h1 class="font-head text-5xl sm:text-7xl md:text-9xl font-bold leading-[0.9] tracking-normal">
+                    <span class="block">MEETKUMAR</span>
+                    <span class="block text-outline">PATEL</span>
+                    <span class="sr-only">| Web Developer Portfolio</span>
+                </h1>
+                <div class="max-w-md font-body text-sm md:text-lg leading-relaxed mt-2 md:mt-4">
+                    I design quality products that bring profit to the company. Meanwhile, it helps me improve my
+                    skills. Blending passion, determination, and a keen eye for solutions.
+                </div>
+                <!-- Mobile Nav Links -->
+                <div class="md:hidden flex flex-col gap-4 mt-4">
+                    <a href="projects.html" class="text-xl font-head hover:underline">Projects -></a>
+                    <a href="about.html" class="text-xl font-head hover:underline">About -></a>
+                    <a href="contact.html" class="text-xl font-head hover:underline">Contact -></a>
+                    <a href="./docs/resume.pdf" target="_blank" rel="noopener noreferrer"
+                        class="text-xl font-head hover:underline font-bold text-ink/60">Resume -></a>
+                </div>
+            </div>
+
+            <div class="md:col-span-5 relative order-1 md:order-2 mb-4 md:mb-0">
+                <div
+                    class="aspect-[3/4] bg-gray-300 overflow-hidden relative grayscale hover:grayscale-0 transition-all duration-700 max-h-[50vh] md:max-h-none w-full md:w-auto mx-auto shadow-xl">
+                    <img src="./photos/profile.webp" alt="Meetkumar Patel Profile" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="py-3 md:py-4 border-y border-ink border-opacity-20 bg-paper">
+        <div
+            class="marquee-container font-head text-2xl md:text-6xl font-bold uppercase tracking-tighter text-ink opacity-80">
+            <div class="marquee-content">
+                <span class="mx-4 md:mx-8">Machine Learning <span class="text-outline mx-2 md:mx-4">•</span></span>
+                <span class="mx-4 md:mx-8">Vibe Coding <span class="text-outline mx-2 md:mx-4">•</span></span>
+                <span class="mx-4 md:mx-8">UI/UX Design <span class="text-outline mx-2 md:mx-4">•</span></span>
+                <span class="mx-4 md:mx-8">Web Development <span class="text-outline mx-2 md:mx-4">•</span></span>
+                <span class="mx-4 md:mx-8">Content Creation <span class="text-outline mx-2 md:mx-4">•</span></span>
+                <span class="mx-4 md:mx-8">Trading & Finance <span class="text-outline mx-2 md:mx-4">•</span></span>
+                <!-- Duplicate -->
+                <span class="mx-4 md:mx-8">Machine Learning <span class="text-outline mx-2 md:mx-4">•</span></span>
+                <span class="mx-4 md:mx-8">Vibe Coding <span class="text-outline mx-2 md:mx-4">•</span></span>
+                <span class="mx-4 md:mx-8">UI/UX Design <span class="text-outline mx-2 md:mx-4">•</span></span>
+                <span class="mx-4 md:mx-8">Web Development <span class="text-outline mx-2 md:mx-4">•</span></span>
+                <span class="mx-4 md:mx-8">Content Creation <span class="text-outline mx-2 md:mx-4">•</span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content (Added for SEO - 500 words target) -->
+    <main class="max-w-4xl mx-auto px-4 md:px-8 py-20 space-y-20">
+
+        <!-- What I Do -->
+        <section>
+            <h2 class="font-head text-4xl md:text-6xl font-bold uppercase mb-8">What I Do</h2>
+            <div class="prose prose-lg font-body text-ink opacity-80 leading-relaxed">
+                <p class="mb-6">
+                    I am Meetkumar Patel, a creative web developer and software engineer based in Kheda, Gujarat, India.
+                    My passion lies in bridging the gap between robust engineering and immersive design.
+                    In a digital world cluttered with generic templates, I build bespoke digital experiences that stand
+                    out, load instantly, and drive real business results.
+                </p>
+                <p class="mb-6">
+                    My expertise covers the full spectrum of modern frontend development.
+                    From crafting pixel-perfect user interfaces to engineering complex logic on the client-side, I
+                    ensure every application I build is fast, accessible, and scalable.
+                    I don't just write code; I solve problems. Whether it's a financial dashboard that needs to process
+                    real-time data or a 3D portfolio that needs to run smoothly on mobile devices, I approach every
+                    challenge with a "user-first" mindset.
+                </p>
+                <p>
+                    I specialize in building Single Page Applications (SPAs) that feel like native apps, static sites
+                    that dominate SEO rankings, and interactive experiences that delight users.
+                </p>
+                <p>
+                    Recently, I've embraced <strong>Vibe Coding</strong> workflows to iterate at the speed of thought,
+                    and I'm documenting this journey through <strong>Content Creation</strong>, helping others navigate
+                    the evolving tech landscape.
+                </p>
+            </div>
+        </section>
+
+        <!-- The Problems I Solve -->
+        <section>
+            <h2 class="font-head text-4xl md:text-6xl font-bold uppercase mb-8">The Problems I Solve</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 font-body">
+                <div class="border border-ink border-opacity-10 p-6 bg-paper hover:shadow-lg transition-all">
+                    <h3 class="font-head text-2xl font-bold uppercase mb-3">Slow Performance</h3>
+                    <p class="opacity-70">
+                        A slow website is a lost customer. I optimize every line of code, every image, and every script
+                        to ensure lightning-fast load times. Using tools like Next.js and static generation, I guarantee
+                        your site passes Core Web Vitals with flying colors.
+                    </p>
+                </div>
+                <div class="border border-ink border-opacity-10 p-6 bg-paper hover:shadow-lg transition-all">
+                    <h3 class="font-head text-2xl font-bold uppercase mb-3">Poor UX/UI</h3>
+                    <p class="opacity-70">
+                        Functionality without design is boring; design without functionality is useless. I combine my
+                        engineering background with a keen eye for aesthetics ("UI/UX Designer") to create interfaces
+                        that are intuitive, beautiful, and accessible to everyone.
+                    </p>
+                </div>
+                <div class="border border-ink border-opacity-10 p-6 bg-paper hover:shadow-lg transition-all">
+                    <h3 class="font-head text-2xl font-bold uppercase mb-3">Mobile Responsiveness</h3>
+                    <p class="opacity-70">
+                        With most traffic coming from mobile, a "desktop-first" approach is obsolete. I build
+                        mobile-first, ensuring your application looks and functions perfectly on everything from a
+                        4-inch iPhone SE to a 4K desktop monitor.
+                    </p>
+                </div>
+                <div class="border border-ink border-opacity-10 p-6 bg-paper hover:shadow-lg transition-all">
+                    <h3 class="font-head text-2xl font-bold uppercase mb-3">SEO Visibility</h3>
+                    <p class="opacity-70">
+                        Building a great site is only half the battle; people need to find it. I implement semantic
+                        HTML, proper meta tags, and structured data (JSON-LD) from day one, not as an afterthought. This
+                        ensures Google loves your site as much as your users do.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tools & Technologies -->
+        <section>
+            <h2 class="font-head text-4xl md:text-6xl font-bold uppercase mb-8">My Toolbelt</h2>
+            <p class="font-body text-lg opacity-80 mb-8">
+                I strictly select the best tools for the job. I avoid "hype-driven development" and focus on
+                technologies that are proven, scalable, and efficient.
+            </p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 font-mono text-sm">
+                <div class="p-4 bg-paper border border-ink border-opacity-10 text-center">React.js</div>
+                <div class="p-4 bg-paper border border-ink border-opacity-10 text-center">Three.js / R3F</div>
+                <div class="p-4 bg-paper border border-ink border-opacity-10 text-center">Tailwind CSS</div>
+                <div class="p-4 bg-paper border border-ink border-opacity-10 text-center">D3.js</div>
+                <div class="p-4 bg-paper border border-ink border-opacity-10 text-center">Python</div>
+                <div class="p-4 bg-paper border border-ink border-opacity-10 text-center">Framer Motion</div>
+                <div class="p-4 bg-paper border border-ink border-opacity-10 text-center">Git & GitHub</div>
+                <div class="p-4 bg-paper border border-ink border-opacity-10 text-center">Vite</div>
+            </div>
+            <p class="font-body text-sm opacity-50 mt-8 text-center italic">
+                ...and many more, including specialized tools for IoT and Data Analysis.
+            </p>
+        </section>
+
+        <!-- Who I Help -->
+        <section>
+            <h2 class="font-head text-4xl md:text-6xl font-bold uppercase mb-8">Who I Help</h2>
+            <div class="font-body text-lg opacity-80 leading-relaxed space-y-6">
+                <p>
+                    I primarily work with <strong>Startups</strong> and <strong>Small Businesses</strong> who need to
+                    make a strong digital impact
+                    without the agency price tag.
+                    I understand the distinct challenges of launching a new product: narrow timelines, limited budgets,
+                    and the need for infinite scalability.
+                </p>
+                <p>
+                    I also partner with <strong>Design Agencies</strong> looking for a developer who "gets" design.
+                    I don't need you to explain why that 2px padding matters—I already know.
+                    I translate your Figma designs into pixel-perfect code that honors your creative vision.
+                </p>
+                <p>
+                    Whether you are an individual formatting a personal brand or a corporation looking for a specialized
+                    dashboard, I bring the same level of dedication and precision to every project.
+                </p>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="border-t border-ink border-opacity-10 pt-12 text-center">
+            <h2 class="font-head text-3xl md:text-5xl font-bold uppercase mb-6">Ready to Scale?</h2>
+            <p class="font-body opacity-70 mb-8 max-w-lg mx-auto">
+                Let's discuss how we can work together to build something extraordinary. I am currently available for
+                freelance projects and consulting.
+            </p>
+            <a href="contact.html"
+                class="inline-block px-8 py-4 bg-ink text-paper font-head font-bold uppercase tracking-widest hover:bg-opacity-90 transition-opacity">
+                Start a Conversation
+            </a>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-ink text-paper py-12 px-4 md:px-8">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-left">
+                <div class="font-head text-xl font-bold uppercase">Meet Patel</div>
+                <div class="font-mono text-xs opacity-50 mt-1">Kheda, Gujarat, India</div>
+            </div>
+            <div class="flex gap-6">
+                <a href="https://www.linkedin.com/in/meet-patel-8a2a82218" target="_blank" rel="noopener noreferrer"
+                    class="hover:text-gray-400 transition-colors">LinkedIn</a>
+                <a href="https://github.com/patelmup1" target="_blank" rel="noopener noreferrer"
+                    class="hover:text-gray-400 transition-colors">GitHub</a>
+                <a href="https://instagram.com/meet_creationx" target="_blank" rel="noopener noreferrer"
+                    class="hover:text-gray-400 transition-colors">Instagram</a>
+            </div>
+            <div class="font-mono text-xs opacity-50">
+                &copy; 2025 Meet Patel. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button id="scrollTopBtn"
+        class="fixed bottom-8 right-8 bg-ink text-paper p-4 rounded-full shadow-2xl translate-y-24 opacity-0 transition-all duration-300 z-50 hover:-translate-y-1 focus:outline-none"
+        aria-label="Scroll to top">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+            class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+        </svg>
+    </button>
+    <script>
+        const scrollBtn = document.getElementById('scrollTopBtn');
+        if (scrollBtn) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 500) {
+                    scrollBtn.classList.remove('translate-y-24', 'opacity-0');
+                } else {
+                    scrollBtn.classList.add('translate-y-24', 'opacity-0');
+                }
+            });
+            scrollBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+        console.log("%c👋 Hey! Building something cool? I'm available for hire! 🚀", "color: #111; background: #E8E6E1; font-size: 1.2rem; padding: 0.5rem; border: 2px solid #111; border-radius: 4px; font-family: 'Oswald', sans-serif;");
+    </script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then(registration => console.log('SW registered:', registration))
+        .catch(error => console.log('SW registration failed:', error));
+    });
+  }
+</script>
+<script>
+    const themeToggle = document.getElementById('themeToggle');
+    const sunIcon = document.getElementById('sunIcon');
+    const moonIcon = document.getElementById('moonIcon');
+    const html = document.documentElement;
+
+    // Check local storage
+    if (localStorage.getItem('theme') === 'dark') {
+        html.setAttribute('data-theme', 'dark');
+        sunIcon.classList.remove('hidden');
+        moonIcon.classList.add('hidden');
+    }
+
+    themeToggle.addEventListener('click', () => {
+        if (html.getAttribute('data-theme') === 'dark') {
+            html.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'light');
+            sunIcon.classList.add('hidden');
+            moonIcon.classList.remove('hidden');
+        } else {
+            html.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+            sunIcon.classList.remove('hidden');
+            moonIcon.classList.add('hidden');
+        }
+    });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    const elementsToAnimate = document.querySelectorAll('h1, h2, h3, p, article, .group, img, blockquote');
+    elementsToAnimate.forEach(el => {
+      el.classList.add('reveal');
+      observer.observe(el);
+    });
+  });
+</script>
+<div id="cursor"></div><div id="noise"></div>
+<script>
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+  });
+</script>
+</body>
+
+</html>

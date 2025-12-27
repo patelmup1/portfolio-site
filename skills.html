@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://cdn.tailwindcss.com; connect-src 'self' https://formsubmit.co;">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>Skills of Meet Patel | Frontend & Technologies</title>
+    <meta property="og:title" content="Skills of Meet Patel | Frontend & Technologies">
+    <meta property="og:description" content="Portfolio of Meet Patel - Software Engineer & Web Developer. Explore interactive 3D projects and technical deep dives.">
+    <meta property="og:image" content="https://meetpatel.me/photos/profile.webp">
+    <meta property="og:url" content="https://meetpatel.me/">
+    <meta property="og:type" content="website">
+    <meta name="description"
+        content="Technical skills of Meet Patel. Expertise in React, Tailwind CSS, Three.js, Python, and modern web development technologies.">
+    <meta name="keywords"
+        content="meet patel skills, frontend developer skills, react developer expertise, technical skills portfolio, web development technologies">
+    <meta name="author" content="Meetkumar Patel">
+    <link rel="canonical" href="https://meetpatel.me/skills.html">
+
+    <!-- Custom Favicon -->
+    <link rel="icon" href="./favicon.jpg">
+
+    <!-- Fonts: Oswald (Headings) & Manrope (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Oswald:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'paper': 'var(--color-paper)',
+                        'ink': 'var(--color-ink)',
+                        'accent': 'var(--color-accent)'
+                    },
+                    fontFamily: {
+                        'head': ['Oswald', 'sans-serif'],
+                        'body': ['Manrope', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root { --color-paper: #E8E6E1; --color-ink: #111111; --color-accent: #444444; } [data-theme='dark'] { --color-paper: #111111; --color-ink: #E8E6E1; --color-accent: #AASSAA; } body { background-color: var(--color-paper); color: var(--color-ink); transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+        }
+
+        .text-outline {
+            -webkit-text-stroke: 1px #111;
+            color: transparent;
+        }
+    </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Meet Patel",
+  "url": "https://meetpatel.me",
+  "image": "https://meetpatel.me/photos/profile.webp",
+  "sameAs": [
+    "https://www.linkedin.com/in/meet-patel-8a2a82218",
+    "https://github.com/patelmup1",
+    "https://instagram.com/meet_creationx"
+  ],
+  "jobTitle": "Software Engineer",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Kheda",
+    "addressRegion": "Gujarat",
+    "addressCountry": "IN"
+  }
+}
+</script>
+<style>
+  @media print {
+    header, nav, #scrollTopBtn, footer { display: none !important; }
+    body { background: white !important; color: black !important; padding: 0 !important; }
+    main { padding-top: 0 !important; }
+  }
+</style>
+<link rel="manifest" href="./manifest.json">
+    <link rel="apple-touch-icon" href="./favicon.jpg">
+    <link rel="preload" href="./photos/profile.webp" as="image">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Oswald:wght@400;500;700&display=swap" as="style">
+<style>
+  html { scroll-behavior: smooth; }
+  .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+  .reveal-visible { opacity: 1; transform: translateY(0); }
+</style>
+<style>
+  #cursor { position: fixed; top: 0; left: 0; width: 20px; height: 20px; border: 1px solid var(--color-ink); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: transform 0.1s, width 0.3s, height 0.3s; mix-blend-mode: difference; }
+  #cursor.hovered { width: 50px; height: 50px; background: var(--color-ink); opacity: 0.1; }
+  #noise { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9998; opacity: 0.05; background: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="1"/%3E%3C/svg%3E'); }
+</style>
+</head>
+
+<body class="selection:bg-ink selection:text-paper">
+
+    <!-- Navigation -->
+    <header
+        class="fixed top-0 left-0 w-full z-40 flex justify-between items-center p-4 md:p-8 bg-paper/90 backdrop-blur-sm border-b border-ink border-opacity-10">
+        <div class="font-head text-lg md:text-xl font-bold tracking-widest uppercase">
+            <a href="index.html" class="hover:opacity-70">MEETPATEL<span class="text-gray-400">.ME</span></a>
+        </div>
+        <nav class="hidden md:flex gap-6 font-head font-bold uppercase text-sm">
+            <a href="index.html" class="hover:text-gray-500 transition-colors">Home</a>
+            <a href="projects.html" class="hover:text-gray-500 transition-colors">Projects</a>
+            <a href="skills.html" class="underline underline-offset-4 pointer-events-none">Skills</a>
+            <a href="about.html" class="hover:text-gray-500 transition-colors">About</a>
+            <a href="contact.html" class="hover:text-gray-500 transition-colors">Contact</a>
+            <a href="blog.html" class="hover:text-gray-500 transition-colors">Blog</a>
+        <a href="./docs/resume.pdf" target="_blank" rel="noopener noreferrer" class="px-4 py-2 border border-ink rounded-sm hover:bg-ink hover:text-paper transition-colors ml-2">Resume</a><button id="themeToggle" class="p-2 rounded-full border border-ink hover:bg-ink hover:text-paper transition-colors ml-4" aria-label="Toggle Dark Mode">
+            <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 hidden">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+            </svg>
+            <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+            </svg>
+        </button>
+        </nav>
+        <div class="md:hidden">
+            <a href="index.html"
+                class="font-head font-bold uppercase text-sm border border-ink px-3 py-1 rounded-sm">Menu</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-12 px-4 md:px-8 max-w-7xl mx-auto">
+
+        <!-- Header -->
+        <section class="mb-16">
+            <h1 class="font-head text-5xl md:text-8xl font-bold uppercase mb-4">
+                Skill <span class="text-outline">Stack</span>
+            </h1>
+            <p class="font-body text-lg md:text-xl max-w-2xl opacity-70 leading-relaxed">
+                A comprehensive look at my technical capabilities and professional focus areas.
+            </p>
+        </section>
+
+        <!-- Skills Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+
+            <!-- Category 1 -->
+            <div>
+                <h2 class="font-head text-3xl font-bold uppercase mb-6 border-b border-ink pb-2">Frontend & Design</h2>
+                <div class="flex flex-wrap gap-3">
+                    <span
+                        class="px-4 py-2 border border-ink rounded-full font-bold hover:bg-ink hover:text-paper transition-colors">React.js</span>
+                    <span
+                        class="px-4 py-2 border border-ink rounded-full font-bold hover:bg-ink hover:text-paper transition-colors">Three.js</span>
+                    <span
+                        class="px-4 py-2 border border-ink rounded-full font-bold hover:bg-ink hover:text-paper transition-colors">Tailwind
+                        CSS</span>
+                    <span
+                        class="px-4 py-2 border border-ink rounded-full font-bold hover:bg-ink hover:text-paper transition-colors">UI/UX
+                        Design</span>
+                    <span
+                        class="px-4 py-2 border border-ink rounded-full font-bold hover:bg-ink hover:text-paper transition-colors">D3.js</span>
+                    <span
+                        class="px-4 py-2 border border-ink rounded-full font-bold hover:bg-ink hover:text-paper transition-colors">Framer
+                        Motion</span>
+                </div>
+            </div>
+
+            <!-- Category 2 -->
+            <div>
+                <h2 class="font-head text-3xl font-bold uppercase mb-6 border-b border-ink pb-2">Data & Backend</h2>
+                <div class="flex flex-wrap gap-3">
+                    <span
+                        class="px-4 py-2 border border-ink rounded-full font-bold hover:bg-ink hover:text-paper transition-colors">Python</span>
+                    <span
+                        class="px-4 py-2 border border-ink rounded-full font-bold hover:bg-ink hover:text-paper transition-colors">MySQL
+                        / DBMS</span>
+                    <span
+                        class="px-4 py-2 border border-ink rounded-full font-bold hover:bg-ink hover:text-paper transition-colors">Machine
+                        Learning</span>
+                    <span
+                        class="px-4 py-2 border border-ink rounded-full font-bold hover:bg-ink hover:text-paper transition-colors">Data
+                        Analytics</span>
+                </div>
+            </div>
+
+            <!-- Category 3 -->
+            <div>
+                <h2 class="font-head text-3xl font-bold uppercase mb-6 border-b border-ink pb-2">Specialized</h2>
+                <div class="flex flex-wrap gap-3">
+                    <span
+                        class="px-4 py-2 border border-ink rounded-full font-bold hover:bg-ink hover:text-paper transition-colors">Trading
+                        & Finance</span>
+                    <span
+                        class="px-4 py-2 border border-ink rounded-full font-bold hover:bg-ink hover:text-paper transition-colors">IoT
+                        Hardware</span>
+                    <span
+                        class="px-4 py-2 border border-ink rounded-full font-bold hover:bg-ink hover:text-paper transition-colors">SAP
+                        ABAP</span>
+                </div>
+            </div>
+
+            <!-- Category 4 -->
+            <div>
+                <h2 class="font-head text-3xl font-bold uppercase mb-6 border-b border-ink pb-2">Creative & AI</h2>
+                <div class="flex flex-wrap gap-3">
+                    <span
+                        class="px-4 py-2 border border-ink rounded-full font-bold hover:bg-ink hover:text-paper transition-colors">Vibe
+                        Coding</span>
+                    <span
+                        class="px-4 py-2 border border-ink rounded-full font-bold hover:bg-ink hover:text-paper transition-colors">Content
+                        Creation</span>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-ink text-paper py-12 px-4 md:px-8 mt-12">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-left">
+                <div class="font-head text-xl font-bold uppercase">Meet Patel</div>
+                <div class="font-mono text-xs opacity-50 mt-1">Kheda, Gujarat, India</div>
+            </div>
+            <div class="flex gap-6">
+                <a href="https://www.linkedin.com/in/meet-patel-8a2a82218" target="_blank" rel="noopener noreferrer"
+                    class="hover:text-gray-400 transition-colors">LinkedIn</a>
+                <a href="https://github.com/patelmup1" target="_blank" rel="noopener noreferrer"
+                    class="hover:text-gray-400 transition-colors">GitHub</a>
+                <a href="https://instagram.com/meet_creationx" target="_blank" rel="noopener noreferrer"
+                    class="hover:text-gray-400 transition-colors">Instagram</a>
+            </div>
+            <div class="font-mono text-xs opacity-50">
+                &copy; 2025 Meet Patel. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+<!-- Scroll to Top -->
+<button id="scrollTopBtn" class="fixed bottom-8 right-8 bg-ink text-paper p-4 rounded-full shadow-2xl translate-y-24 opacity-0 transition-all duration-300 z-50 hover:-translate-y-1 focus:outline-none" aria-label="Scroll to top">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+    </svg>
+</button>
+<script>
+    const scrollBtn = document.getElementById('scrollTopBtn');
+    if (scrollBtn) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollBtn.classList.remove('translate-y-24', 'opacity-0');
+            } else {
+                scrollBtn.classList.add('translate-y-24', 'opacity-0');
+            }
+        });
+        scrollBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+</script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then(registration => console.log('SW registered:', registration))
+        .catch(error => console.log('SW registration failed:', error));
+    });
+  }
+</script>
+<script>
+    const themeToggle = document.getElementById('themeToggle');
+    const sunIcon = document.getElementById('sunIcon');
+    const moonIcon = document.getElementById('moonIcon');
+    const html = document.documentElement;
+
+    // Check local storage
+    if (localStorage.getItem('theme') === 'dark') {
+        html.setAttribute('data-theme', 'dark');
+        sunIcon.classList.remove('hidden');
+        moonIcon.classList.add('hidden');
+    }
+
+    themeToggle.addEventListener('click', () => {
+        if (html.getAttribute('data-theme') === 'dark') {
+            html.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'light');
+            sunIcon.classList.add('hidden');
+            moonIcon.classList.remove('hidden');
+        } else {
+            html.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+            sunIcon.classList.remove('hidden');
+            moonIcon.classList.add('hidden');
+        }
+    });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    const elementsToAnimate = document.querySelectorAll('h1, h2, h3, p, article, .group, img, blockquote');
+    elementsToAnimate.forEach(el => {
+      el.classList.add('reveal');
+      observer.observe(el);
+    });
+  });
+</script>
+<div id="cursor"></div><div id="noise"></div>
+<script>
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+  });
+</script>
+</body>
+
+</html>

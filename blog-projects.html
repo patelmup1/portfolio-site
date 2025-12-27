@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://cdn.tailwindcss.com; connect-src 'self' https://formsubmit.co;">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend Projects Explained | Architecture Breakdown</title>
+    <meta property="og:title" content="Frontend Projects Explained | Architecture Breakdown">
+    <meta property="og:description" content="Portfolio of Meet Patel - Software Engineer & Web Developer. Explore interactive 3D projects and technical deep dives.">
+    <meta property="og:image" content="https://meetpatel.me/photos/profile.webp">
+    <meta property="og:url" content="https://meetpatel.me/">
+    <meta property="og:type" content="website">
+    <meta name="description"
+        content="Technical breakdown of Meet Patel's key frontend projects: FinDash and ShareX. Learn about React architecture and state management patterns.">
+    <meta name="keywords"
+        content="frontend project architecture, react project structure, findash explanation, sharex case study, web development portfolio projects">
+    <meta name="author" content="Meetkumar Patel">
+    <link rel="canonical" href="https://meetpatel.me/blog-projects.html">
+    <link rel="icon" href="./favicon.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Oswald:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: { extend: { colors: { 'paper': 'var(--color-paper)', 'ink': 'var(--color-ink)', 'accent': 'var(--color-accent)' }, fontFamily: { 'head': ['Oswald', 'sans-serif'], 'body': ['Manrope', 'sans-serif'] } } }
+        }
+    </script>
+    <style>
+        :root { --color-paper: #E8E6E1; --color-ink: #111111; --color-accent: #444444; } [data-theme='dark'] { --color-paper: #111111; --color-ink: #E8E6E1; --color-accent: #AASSAA; } body { background-color: var(--color-paper); color: var(--color-ink); transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+        }
+    </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Meet Patel",
+  "url": "https://meetpatel.me",
+  "image": "https://meetpatel.me/photos/profile.webp",
+  "sameAs": [
+    "https://www.linkedin.com/in/meet-patel-8a2a82218",
+    "https://github.com/patelmup1",
+    "https://instagram.com/meet_creationx"
+  ],
+  "jobTitle": "Software Engineer",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Kheda",
+    "addressRegion": "Gujarat",
+    "addressCountry": "IN"
+  }
+}
+</script>
+<style>
+  @media print {
+    header, nav, #scrollTopBtn, footer { display: none !important; }
+    body { background: white !important; color: black !important; padding: 0 !important; }
+    main { padding-top: 0 !important; }
+  }
+</style>
+<link rel="manifest" href="./manifest.json">
+    <link rel="apple-touch-icon" href="./favicon.jpg">
+    <link rel="preload" href="./photos/profile.webp" as="image">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Oswald:wght@400;500;700&display=swap" as="style">
+<style>
+  html { scroll-behavior: smooth; }
+  .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+  .reveal-visible { opacity: 1; transform: translateY(0); }
+</style>
+<style>
+  #cursor { position: fixed; top: 0; left: 0; width: 20px; height: 20px; border: 1px solid var(--color-ink); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: transform 0.1s, width 0.3s, height 0.3s; mix-blend-mode: difference; }
+  #cursor.hovered { width: 50px; height: 50px; background: var(--color-ink); opacity: 0.1; }
+  #noise { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9998; opacity: 0.05; background: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="1"/%3E%3C/svg%3E'); }
+</style>
+</head>
+
+<body class="selection:bg-ink selection:text-paper font-body">
+
+    <header
+        class="fixed top-0 left-0 w-full z-40 flex justify-between items-center p-4 md:p-8 bg-paper/90 backdrop-blur-sm border-b border-ink border-opacity-10">
+        <div class="font-head text-lg md:text-xl font-bold tracking-widest uppercase"><a href="index.html"
+                class="hover:opacity-70">MEETPATEL<span class="text-gray-400">.ME</span></a></div>
+        <nav class="hidden md:flex gap-6 font-head font-bold uppercase text-sm">
+            <a href="blog.html" class="hover:text-gray-500 transition-colors"><- Back to Blog</a>
+        <a href="./docs/resume.pdf" target="_blank" rel="noopener noreferrer" class="px-4 py-2 border border-ink rounded-sm hover:bg-ink hover:text-paper transition-colors ml-2">Resume</a><button id="themeToggle" class="p-2 rounded-full border border-ink hover:bg-ink hover:text-paper transition-colors ml-4" aria-label="Toggle Dark Mode">
+            <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 hidden">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+            </svg>
+            <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+            </svg>
+        </button>
+        </nav>
+    </header>
+
+    <main class="pt-32 pb-20 px-4 md:px-8 max-w-4xl mx-auto">
+
+        <article
+            class="prose prose-lg prose-headings:font-head prose-headings:uppercase prose-headings:font-bold max-w-none text-ink opacity-90">
+            <h1 class="text-5xl md:text-7xl mb-8">Frontend projects by Meet Patel explained</h1>
+            <div class="flex gap-4 text-xs font-mono opacity-50 mb-12 border-b border-ink border-opacity-10 pb-8">
+                <span>NOVEMBER 2025</span>
+                <span>•</span>
+                <span>10 MIN READ</span>
+            </div>
+
+            <p>
+                A portfolio is more than just pretty pictures; it's proof of competence. In this post, I want to peel
+                back the layers of my two most complex projects—FinDash and ShareX—and explain the architectural
+                decisions that govern them.
+            </p>
+
+            <h2>Project 1: FinDash (Financial Dashboard)</h2>
+            <p>
+                <strong>The Goal:</strong> Create a dashboard that visualizes high-frequency trading data without
+                freezing the browser.
+            </p>
+            <h3>Architecture: The Observer Pattern</h3>
+            <p>
+                In a typical React app, you might fetch data in a `useEffect` hook. For real-time finance, that's too
+                slow. I implemented an Observer pattern where a centralized `MarketStore` class manages the WebSocket
+                connection.
+            </p>
+            <p>
+                Components subscribe to specific tickers. When a price update arrives for "AAPL," the store only
+                notifies components listening to "AAPL." This prevents a global re-render of the entire dashboard, which
+                is critical when tracking 50+ assets simultaneously.
+            </p>
+            <h3>Visuals: D3.js Integration</h3>
+            <p>
+                I used D3.js for the heavy math (scales, axes generation) but let React handle the DOM. This hybrid
+                approach allows us to use React's declarative nature for layout while utilizing D3's powerful algorithms
+                for data binding.
+            </p>
+
+            <h2>Project 2: ShareX (File Sharing)</h2>
+            <p>
+                <strong>The Goal:</strong> Secure, peer-to-peer file transfer with zero friction.
+            </p>
+            <h3>Architecture: Finite State Machines (FSM)</h3>
+            <p>
+                File uploads are complex. You have states like `IDLE`, `CONNECTING`, `UPLOADING`, `PAUSED`, `COMPLETED`,
+                `ERROR`. Using simple boolean flags (`isLoading`, `isError`) quickly leads to "impossible states" (e.g.,
+                being in `ERROR` and `UPLOADING` simultaneously).
+            </p>
+            <p>
+                I used a Finite State Machine (XState concepts) to manage the transfer lifecycle. The UI simply renders
+                based on the `current_state`. This eliminates entire classes of bugs related to race conditions.
+            </p>
+            <h3>Security: Ephemeral Encryption</h3>
+            <p>
+                Files are encrypted on the client side before they even touch the relay server. The decryption key is
+                part of the "share link" URL hash, which is never sent to the server. This means even I, as the
+                developer, cannot see what users are sharing.
+            </p>
+
+            <h2>Common patterns across my work</h2>
+            <ul>
+                <li><strong>Atomic Design:</strong> I break interfaces down into Atoms (buttons, inputs), Molecules
+                    (search bars), and Organisms (headers). This makes the codebase dry and consistent.</li>
+                <li><strong>Custom Hooks:</strong> Logic is always extracted from UI. You will rarely see complex
+                    `useEffect` logic inside a JSX component in my code. It interacts via `useAuth`, `useSocket`, or
+                    `useAnimation`.</li>
+            </ul>
+
+            <p>
+                These projects represent my belief that good frontend engineering is about more than just matching a
+                Figma design—it's about building robust, scalable software that lives in the browser.
+            </p>
+        </article>
+
+    </main>
+
+    <footer class="bg-ink text-paper py-12 px-4 md:px-8 mt-12">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="text-center md:text-left">
+                <div class="font-head text-xl font-bold uppercase">Meet Patel</div>
+                <div class="font-mono text-xs opacity-50 mt-1">Kheda, Gujarat, India</div>
+            </div>
+            <div class="font-mono text-xs opacity-50">&copy; 2025 Meet Patel</div>
+        </div>
+    </footer>
+<!-- Scroll to Top -->
+<button id="scrollTopBtn" class="fixed bottom-8 right-8 bg-ink text-paper p-4 rounded-full shadow-2xl translate-y-24 opacity-0 transition-all duration-300 z-50 hover:-translate-y-1 focus:outline-none" aria-label="Scroll to top">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+    </svg>
+</button>
+<script>
+    const scrollBtn = document.getElementById('scrollTopBtn');
+    if (scrollBtn) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollBtn.classList.remove('translate-y-24', 'opacity-0');
+            } else {
+                scrollBtn.classList.add('translate-y-24', 'opacity-0');
+            }
+        });
+        scrollBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+</script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then(registration => console.log('SW registered:', registration))
+        .catch(error => console.log('SW registration failed:', error));
+    });
+  }
+</script>
+<script>
+    const themeToggle = document.getElementById('themeToggle');
+    const sunIcon = document.getElementById('sunIcon');
+    const moonIcon = document.getElementById('moonIcon');
+    const html = document.documentElement;
+
+    // Check local storage
+    if (localStorage.getItem('theme') === 'dark') {
+        html.setAttribute('data-theme', 'dark');
+        sunIcon.classList.remove('hidden');
+        moonIcon.classList.add('hidden');
+    }
+
+    themeToggle.addEventListener('click', () => {
+        if (html.getAttribute('data-theme') === 'dark') {
+            html.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'light');
+            sunIcon.classList.add('hidden');
+            moonIcon.classList.remove('hidden');
+        } else {
+            html.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+            sunIcon.classList.remove('hidden');
+            moonIcon.classList.add('hidden');
+        }
+    });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    const elementsToAnimate = document.querySelectorAll('h1, h2, h3, p, article, .group, img, blockquote');
+    elementsToAnimate.forEach(el => {
+      el.classList.add('reveal');
+      observer.observe(el);
+    });
+  });
+</script>
+<div id="cursor"></div><div id="noise"></div>
+<script>
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+  });
+</script>
+</body>
+
+</html>

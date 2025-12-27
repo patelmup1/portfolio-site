@@ -1,0 +1,21 @@
+{
+  "name": "Meet Patel Portfolio",
+  "short_name": "Meet Patel",
+  "description": "Portfolio of Meet Patel - Software Engineer & Web Developer.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#E8E6E1",
+  "theme_color": "#E8E6E1",
+  "icons": [
+    {
+      "src": "/favicon.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "/favicon.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}
